@@ -23,3 +23,4 @@ pnpm build
 
 sudo scp -i ~/.ssh/XXXX.pem -r dist/* ubuntu@ec2-13-215-252-254.ap-southeast-1.compute.amazonaws.com:/home/ubuntu/docker-data/paygapage/
 ```
+test
