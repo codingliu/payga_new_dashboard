@@ -16,7 +16,6 @@
       </template>
       <template #operationBeforeExtend="{ record }">
         <a-link @click="getRest(record)">{{ tr('回调') }}</a-link>
-        <a-link v-if="record.h === 'SUCCESS'" @click="go2PZ(record)">{{ tr('凭证') }}</a-link>
       </template>
     </ma-crud>
   </div>
@@ -42,7 +41,7 @@ async function exportExcel() {
     rest.endDate = dayjs().endOf('day').format('YYYY-MM-DD');
   }
   const res = await request({
-    url: '/v1/export/payout',
+    url: '/merchant/trade/payout/list/export',
     method: 'get',
     params: tool.clearParamsEmpty({...rest, a, b, c})
   })
@@ -50,33 +49,23 @@ async function exportExcel() {
 }
 
 function getOnlineUserPageList(params = {}) {
-  const {x, b: a, c: b, h: c, ...rest} = params
-  if (x) {
-    rest.startDate = x[0];
-    rest.endDate = x[1];
+  const {createdTime, merchantOrderNo: merchantOrderNo, platOrderNo: platNo, payerInfo: payerInfo,amount: amount,payerMobile: payerMobile,payerEmail: payerEmail,  ...rest} = params
+  if (createdTime) {
+    rest.startDate = createdTime[0] + ' 00:00:00';
+    rest.endDate = createdTime[1] + ' 23:59:59';
   } else {
-    rest.startDate = dayjs().startOf('day').subtract(3, 'day').format('YYYY-MM-DD');
-    rest.endDate = dayjs().endOf('day').format('YYYY-MM-DD');
+    rest.startDate = dayjs().startOf('day').subtract(3, 'day').format('YYYY-MM-DD') + ' 00:00:00';
+    rest.endDate = dayjs().endOf('day').format('YYYY-MM-DD')  + ' 23:59:59';
   }
+
   return request({
-    url: '/v1/payout/list',
+    url: '/trade/payout/list',
     method: 'get',
-    params: tool.clearParamsEmpty({...rest, a, b, c})
+    params
+    //params: tool.clearParamsEmpty({...rest, a, b, c})
   })
 }
 
-function go2PZ(row) {
-  console.log(row, 111)
-}
-
-async function getRest(row) {
-  await request({
-    url: `/v1/payout/notify/${row.b}`,
-    method: 'post'
-  })
-  Message.success(tr('回调成功'));
-  crudRef.value.refresh();
-}
 
 const crud = reactive({
   api: getOnlineUserPageList,
@@ -89,39 +78,48 @@ const crud = reactive({
 })
 
 const columns = reactive([
-  // {title: tr('商户号'), dataIndex: 'a', width: 160},
-  {title: tr('商家订单号'), dataIndex: 'b', search: true, width: 200},
-  {title: tr('支付订单号'), dataIndex: 'c', search: true, width: 200},
-  {title: tr('银行名称'), dataIndex: 'd',},
-  {title: tr('卡号'), dataIndex: 'e', width: 200},
-  {title: tr('客户姓名'), dataIndex: 'f',},
+  {title: tr('币种'), dataIndex: 'currency', value: 'INR', search: true, width: 60},
+  {title: tr('商户编号'), dataIndex: 'merchantId', width: 180},
+  {title: tr('商户订单号'), dataIndex: 'merchantOrderNo', search: true, width: 200},
+  {title: tr('平台订单号'), dataIndex: 'platNo', search: true, width: 200},
+  {title: tr('支付方式'), dataIndex: 'paymentMethod', width: 100},
+  {title: tr('收款账号'), dataIndex: 'payerInfo', search: true, width: 150},
+  {title: tr('收款人手机号'), dataIndex: 'payeeMobile', search: true, width: 150},
+  {title: tr('付款人姓名'), dataIndex: 'payeeName', search: true, width: 150},
+  {title: tr('金额'), dataIndex: 'amount', search: true, width: 100},
+  {title: tr('费用'), dataIndex: 'fee', width: 100},
+  {title: tr('银行流水'), dataIndex: 'trxid',search: true, width: 100},
+  {title: tr('备注'), dataIndex: 'remark', width: 180},
   {
-    title: tr('金额'), dataIndex: 'g', width: 140, customRender: ({record}) => {
-      return parseFloat(record.g || '0').toFixed(2)
-    }
-  },
-  {
-    title: tr('状态'), dataIndex: 'h', search: true, formType: 'select',
-    dict: {
-      data: [{label: 'SUCCESS', value: 'SUCCESS'}, {label: 'FAILED', value: 'FAILED'}, {
-        label: 'PENDING',
-        value: 'PENDING'
-      }, {label: 'CREATED', value: 'CREATED'}], translation: true
-    },
-  },
-  {title: tr('返回信息'), dataIndex: 'i', width: 200},
-  {
-    title: tr('创建时间'), dataIndex: 'x', search: true, formType: 'range', width: 180, customRender: ({record}) => {
-      return record.x ? tool.dateFormat(record.x) : ''
+    title: tr('创建时间'), dataIndex: 'createdTime', search: true, formType: 'range', width: 180, customRender: ({record}) => {
+      return record.createdTime ? tool.dateFormat(record.createdTime) : ''
     },
     searchDefaultValue: [dayjs().startOf('day').subtract(3, 'day').format('YYYY-MM-DD'), dayjs().endOf('day').format('YYYY-MM-DD')],
   },
   {
-    title: tr('完成时间'), dataIndex: 'y', width: 180, customRender: ({record}) => {
-      return record.y ? tool.dateFormat(record.y) : ''
-    }
+    title: tr('更新时间'), dataIndex: 'updatedTime', formType: 'range', width: 180, customRender: ({record}) => {
+      return record.updatedTime ? tool.dateFormat(record.updatedTime) : ''
+    },
+    searchDefaultValue: [dayjs().startOf('day').subtract(3, 'day').format('YYYY-MM-DD'), dayjs().endOf('day').format('YYYY-MM-DD')],
+  },
+  {
+    title: tr('支付状态'), dataIndex: 'paymentStatus', search: true, formType: 'select',
+    dict: {
+      data: [{label: 'CREATED', value: 'CREATED'}, {label: 'PENDING', value: 'PENDING'},
+        {label: 'FAILED', value: 'FAILED' }, {label: 'SUCCESS', value: 'SUCCESS'}], translation: true
+    },
   },
 ])
+
+async function getRest(row) {
+  await request({
+    url: `/v1/payout/notify/${row.b}`,
+    method: 'post'
+  })
+  Message.success(tr('回调成功'));
+  crudRef.value.refresh();
+}
+
 </script>
 
 <script>
