@@ -196,7 +196,7 @@
               @click="handleCallback(record)"
               :loading="callbackLoadingMap[record.merchantOrderNo]"
           >
-          回调
+          {{tr('回调')}}
           </a-button>
         </template>
       </a-table>
@@ -238,7 +238,7 @@ import tool from "@/utils/tool";
 
 // 统计数据
 const statsData = reactive({
-  totalOrder: '0单',
+  totalOrder: '0 '+tr('单'),
   totalAmount: '0 INR',
   successAmount: '0 INR',
   refundAmount: '0 INR',
@@ -263,7 +263,7 @@ const searchForm = reactive({
 })
 // 表格列配置
 const columns = reactive([
-  { title: '币种', dataIndex: 'currency' },
+  { title: tr('币种'), dataIndex: 'currency' },
   { title: '商户订单号', dataIndex: 'merchantOrderNo', className: 'custom-number-class' },
   { title: '平台订单号', dataIndex: 'platNo' },
   { title: '支付方式', dataIndex: 'paymentMethodName' },
