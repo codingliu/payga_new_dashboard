@@ -142,7 +142,7 @@
     <div class="button-area">
       <a-button type="primary" icon="search" style="background-color: #5d87ff" @click="handleSearch()">搜索</a-button>
       <a-button type="primary" icon="refresh" style="margin-left: 8px; background-color: #5d87ff" @click="handleReset()">重置</a-button>
-      <a-button type="primary" icon="download" style="margin-left: 8px; background-color: #5d87ff" @click="handleExport()">导出</a-button>
+      <a-button type="primary" icon="download" style="margin-left: 8px; background-color: #5d87ff" @click="handleExport()" :loading="exportLoading">导出</a-button>
     </div>
     <!-- 新增：分隔线（区分按钮和统计卡片） -->
     <div class="divider"></div>
@@ -231,6 +231,7 @@ import {
   Message
 } from '@arco-design/web-vue'
 import { request } from "@/utils/request";
+import qs from 'qs';
 import dayjs from "dayjs";
 import {tr} from "@/utils/common";
 import tool from "@/utils/tool";
@@ -295,7 +296,7 @@ const columns = reactive([
 
 // 表格加载状态（简化为普通布尔值，更易控制）
 const tableLoading = ref(false) // false：隐藏；true：显示
-
+const exportLoading = ref(false)
 // 获取支付列表API（接收分页参数和搜索条件）
 const getPayList = async (page = 1, limit = 15, searchParams = {}) => {
   try {
@@ -359,6 +360,87 @@ const getPayList = async (page = 1, limit = 15, searchParams = {}) => {
   }
 }
 
+// 新增：处理Excel导出的核心函数
+const handleExport = async () => {
+  exportLoading.value = true;
+  try {
+    // 1. 构造导出参数（与方案1一致）
+    const exportParams = { ...searchForm };
+    const [createStartTime, createEndTime] = exportParams.createTimeRange || [];
+    if (createStartTime) {
+      exportParams.createdStartTime = createStartTime;
+    }
+    if (createEndTime) {
+      exportParams.createdEndTime = createEndTime;
+    }
+    delete exportParams.createTimeRange;
+    delete exportParams.updateTimeRange;
+
+    // 2. 过滤空参数
+    const validParams = {};
+    Object.keys(exportParams).forEach(key => {
+      const value = exportParams[key];
+      if (value !== '' && value !== null && value !== undefined && !Array.isArray(value) && value.length !== 0) {
+        validParams[key] = value;
+      }
+    });
+
+    const env = import.meta.env
+    // 3. 拼接URL和参数
+    const exportUrl = 'http://localhost:2888/api/trade/payin/list/export';
+    const paramsStr = qs.stringify(validParams);
+    const fullUrl = paramsStr ? `${exportUrl}?${paramsStr}` : exportUrl;
+    // 4. 创建XMLHttpRequest对象，手动携带Token
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', fullUrl, true); // 若后端是POST，改为POST，并在send中传递参数
+    // 关键：设置请求头携带Token（根据你的Token存储位置调整）
+    const token = tool.local.get(env.VITE_APP_TOKEN_PREFIX); // 假设Token存在localStorage中
+    xhr.setRequestHeader('MERCHANT-TOKEN', `${token}`); // 常见的Token传递格式
+      // 若后端要求Token放在其他请求头，如：xhr.setRequestHeader('Token', token);
+    xhr.responseType = 'blob';
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        // 创建Blob对象
+        const blob = new Blob([xhr.response], {
+          type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8'
+        });
+        // 提取文件名
+        let fileName = 'PayInList.xlsx';
+        const contentDisposition = xhr.getResponseHeader('content-disposition');
+        if (contentDisposition) {
+          const fileNameMatch = contentDisposition.match(/filename=(?:\"?)(.+?)(?:\"?;|$)/);
+          if (fileNameMatch && fileNameMatch[1]) {
+            fileName = decodeURIComponent(fileNameMatch[1]);
+          }
+        }
+        // 模拟下载
+        const downloadUrl = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = downloadUrl;
+        a.download = fileName;
+        document.body.appendChild(a);
+        a.click();
+        // 销毁资源
+        setTimeout(() => {
+          URL.revokeObjectURL(downloadUrl);
+          document.body.removeChild(a);
+        }, 100);
+        // 提示成功
+        Message.success('Excel Export Success');
+      } else {
+        // 响应状态异常
+        Message.error(`导出失败，状态码：${xhr.status}`);
+      }
+      exportLoading.value = false;
+    };
+    xhr.send();
+  } catch (error) {
+    exportLoading.value = false;
+    console.error('导出触发失败：', error);
+    Message.error('导出触发失败，请重试');
+  }
+}
+
 const callbackLoadingMap = reactive({})
 const handleCallback = async (record) => {
   const orderNo = record.merchantOrderNo;
@@ -419,14 +501,6 @@ const handleReset = () => {
   paginationConfig.current = 1;
   getPayList(paginationConfig.current, paginationConfig.pageSize);
 }
-
-const handleExport = () => {
-  // 搜索时重置页码为1
-  paginationConfig.current = 1;
-  // 携带搜索条件请求数据
-  getPayList(paginationConfig.current, paginationConfig.pageSize, searchForm);
-}
-
 
 // 模拟表格数据
 const tableData = reactive([])
