@@ -30,7 +30,7 @@
           :class="{ active: activeTab === 'api' }"
           @click="activeTab = 'api'"
       >
-        Api密钥
+        Api IP
       </div>
       <div
           class="tab-item"
@@ -130,29 +130,60 @@
       <div v-if="activeTab === 'google' && !isLoading">
         <div class="section-title">谷歌验证设置</div>
         <div class="form-container">
-          <div class="form-item radio-item">
+          <!-- 谷歌验证状态（只读展示，不可切换） -->
+          <div class="form-item">
             <label class="form-label">谷歌验证状态</label>
-            <div class="radio-wrap">
-              <label class="radio-label">
-                <input type="radio" name="googleStatus" value="1" v-model="googleForm.status">
-                开启
-              </label>
-              <label class="radio-label">
-                <input type="radio" name="googleStatus" value="0" v-model="googleForm.status">
-                关闭
-              </label>
+            <div class="status-display" style="width: 20%">
+              {{ googleForm.status === '1' ? '开启' : '关闭' }}
             </div>
           </div>
+
+          <!-- 开启状态（status=1）：仅显示谷歌验证密钥（无保存按钮） -->
           <div class="form-item" v-if="googleForm.status === '1'">
             <label class="form-label">谷歌验证密钥</label>
-            <div class="input-group">
-              <input type="text" class="form-input" v-model="googleForm.secretKey" placeholder="请输入谷歌验证密钥">
+            <div class="input-group" style="width: 20%">
+              <input
+                  type="text"
+                  class="form-input"
+                  :value="googleForm.secretKey || '无'"
+                  readonly
+              >
             </div>
-            <div class="error-text" v-if="googleFormError.secretKey">请输入谷歌验证密钥</div>
           </div>
-          <div class="form-item btn-wrap">
-            <label class="form-label"></label>
-            <button class="save-btn" @click="saveGoogleForm">保存</button>
+
+          <!-- 关闭状态（status=0）：显示二维码 + 授权码输入框 + 绑定按钮 -->
+          <div v-if="googleForm.status === '0'">
+            <!-- 二维码展示（300x300） -->
+            <div class="qr-container">
+              <label class="form-label">谷歌验证二维码</label>
+              <img
+                  :src="googleForm.qr"
+                  alt="谷歌验证二维码"
+                  class="qr-img"
+                  v-if="googleForm.qr"
+              >
+              <div class="empty-tip" v-else>二维码加载失败，请刷新页面</div>
+            </div>
+
+            <!-- 授权码输入框 -->
+            <div class="form-item">
+              <label class="form-label">授权码</label>
+              <div class="input-group" style="width: 20%">
+                <input maxlength="20"
+                    type="text"
+                    class="form-input"
+                    v-model="googleForm.authCode"
+                    placeholder="请输入谷歌验证APP中的授权码"
+                >
+              </div>
+              <div class="error-text" v-if="googleFormError.authCode">请输入授权码</div>
+            </div>
+
+            <!-- 绑定按钮 -->
+            <div class="form-item btn-wrap">
+              <label class="form-label"></label>
+              <button class="bind-btn" @click="submitBind">提交绑定</button>
+            </div>
           </div>
         </div>
       </div>
@@ -229,6 +260,10 @@
     <div class="copy-tip" v-if="showCopyTip">
       复制成功
     </div>
+    <!-- 复制成功Tip（屏幕中间显示） -->
+    <div class="copy-tip" v-if="showSUCCESSTip">
+      SUCCESS
+    </div>
   </div>
 </template>
 
@@ -240,6 +275,7 @@ import {request} from "@/utils/request";
 const activeTab = ref('base')
 // 复制成功Tip控制
 const showCopyTip = ref(false)
+const showSUCCESSTip = ref(false)
 // 加载状态控制
 const isLoading = ref(true)
 
@@ -264,11 +300,14 @@ const apiFormError = ref({
 
 // 3. Google验证表单数据
 const googleForm = ref({
-  status: '0',
-  secretKey: ''
+  status: '0',     // 0-关闭 1-开启
+  secretKey: '',   // 谷歌密钥
+  qr: '',          // 二维码base64
+  key: '',         // 接口返回的key
+  authCode: ''     // 授权码
 })
 const googleFormError = ref({
-  secretKey: ''
+  authCode: ''
 })
 
 // 4. 密码修改表单数据
@@ -317,7 +356,12 @@ onMounted(async () => {
       apiForm.value = apiRes.data
     }
     if (googleRes.code === '200') {
-      googleForm.value = googleRes.data
+      googleForm.value = {
+        status: googleRes.data.status,
+        secretKey: googleRes.data.secretKey || '',
+        qr: googleRes.data.qr || '',
+        key: googleRes.data.key || ''
+      }
     }
   } catch (error) {
     console.error('数据加载失败：', error)
@@ -327,6 +371,42 @@ onMounted(async () => {
     isLoading.value = false
   }
 })
+
+// 提交绑定（关闭状态下，真实接口提交）
+const submitBind = async () => {
+  // 前置校验
+  googleFormError.value.authCode = ''
+  if (!googleForm.value.authCode.trim()) {
+    googleFormError.value.authCode = '请输入授权码'
+    return
+  }
+  isLoading.value = true
+  try {
+    const res = await request({
+      url: '/merchant/param/config/googleKey', // 真实绑定接口
+      method: 'POST',
+      data: {
+        key: googleForm.value.key,       // 后端返回的key
+        authCode: googleForm.value.authCode.trim()
+      }
+    })
+    // 处理提交结果
+    if (res.code === '200') {
+      alert('绑定成功')
+      // 绑定成功后，可重新加载谷歌验证数据，更新状态
+      onMounted() // 复用加载逻辑，刷新数据
+    } else {
+      alert('绑定失败：' + (res.message || '未知错误'))
+    }
+  } catch (error) {
+    console.error('提交绑定异常：', error)
+    alert('绑定异常，请稍后重试')
+  } finally {
+    isLoading.value = false
+    // 清空授权码输入框
+    googleForm.value.authCode = ''
+  }
+}
 
 // 复制文本功能（带Tip提示，3秒自动关闭）
 const copyText = (text) => {
@@ -347,38 +427,10 @@ const saveApiForm = async () => {
   })
   if (res.code === '200') {
     //alert('API密钥配置保存成功')
-    showCopyTip.value = true
+    showSUCCESSTip.value = true
     setTimeout(() => {
-      showCopyTip.value = false
+      showSUCCESSTip.value = false
     }, 3000)
-  } else {
-    alert('保存失败：' + (res.msg || '未知错误'))
-  }
-}
-
-// 保存Google表单
-const saveGoogleForm = async () => {
-  // 重置错误提示
-  googleFormError.value = {secretKey: ''}
-  let isValid = true
-
-  // 开启状态下校验密钥
-  if (googleForm.value.status === '1' && !googleForm.value.secretKey) {
-    googleFormError.value.secretKey = '请输入谷歌验证密钥'
-    isValid = false
-  }
-
-  if (!isValid) return
-
-  // 提交到后端
-  const res = await request({
-    url: 'https://aaa.com/savegoogleinfo',
-    method: 'post',
-    data: googleForm.value,
-    mockData: {}
-  })
-  if (res.code === 200) {
-    alert('谷歌验证设置保存成功')
   } else {
     alert('保存失败：' + (res.msg || '未知错误'))
   }
@@ -410,9 +462,9 @@ const savePwdForm = async () => {
   })
   if (res.code === '200') {
     //alert('密码修改成功，请重新登录')
-    showCopyTip.value = true
+    showSUCCESSTip.value = true
     setTimeout(() => {
-      showCopyTip.value = false
+      showSUCCESSTip.value = false
     }, 3000)
     // 重置表单
     pwdForm.value = {oldPwd: '', newPwd: '', confirmPwd: ''}
@@ -421,24 +473,6 @@ const savePwdForm = async () => {
   }
 }
 
-// 删除设备
-const deleteDevice = (index) => {
-  if (confirm('确定要删除该设备吗？')) {
-    // 模拟删除请求
-    request({
-      url: `https://aaa.com/deletedevice/${index}`,
-      method: 'post',
-      mockData: {}
-    }).then(res => {
-      if (res.code === 200) {
-        deviceList.value.splice(index, 1)
-        alert('设备删除成功')
-      } else {
-        alert('删除失败：' + (res.msg || '未知错误'))
-      }
-    })
-  }
-}
 </script>
 
 <style>
@@ -718,11 +752,11 @@ body {
 
 /* 按钮样式（保留原配置） */
 .btn-wrap {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
   margin-top: 24px;
   margin-bottom: 0;
+  text-align: left; /* 文本/按钮左对齐 */
+  padding: 0; /* 移除所有内边距 */
+  display: block; /* 强制块级元素，取消flex布局干扰 */
 }
 
 .save-btn {
@@ -838,5 +872,53 @@ body {
     opacity: 0;
     transform: translate(-50%, -60%);
   }
+}
+
+/* 状态展示样式 */
+.status-display {
+  padding: 12px 18px;
+  border: 1px solid #e5e6eb;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #1d2129;
+  background-color: #f8f9fa;
+}
+
+/* 二维码容器样式 */
+.qr-container {
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.qr-img {
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
+  border: 1px solid #e5e6eb;
+  border-radius: 8px;
+  padding: 8px;
+}
+.empty-tip {
+  font-size: 14px;
+  color: #86909c;
+  padding: 12px 0;
+}
+
+/* 提交绑定按钮：确保自身不居中 */
+.bind-btn {
+  padding: 10px 24px;
+  background-color: #00b42a;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s;
+  display: inline-block; /* 行内块，跟随容器text-align:left */
+  margin: 0; /* 移除默认外边距 */
+}
+.bind-btn:hover {
+  background-color: #00a127;
 }
 </style>
