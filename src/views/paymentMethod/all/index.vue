@@ -51,7 +51,7 @@
       >
 
         <template #feeRate="{ record }">
-          <div >{{record.fixedAmount}} INR + {{record.feeRate}} %</div>
+          <div>Fixed fee: {{record.fixedAmount}} INR <br/>Rate:   {{record.feeRate}} %</div>
         </template>
         <template #state="{ record }">
           <span :class="getStateClass(record.status)">{{ record.status }}</span>
