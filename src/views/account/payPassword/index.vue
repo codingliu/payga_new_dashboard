@@ -387,7 +387,7 @@ const submitBind = async () => {
       method: 'POST',
       data: {
         key: googleForm.value.key,       // 后端返回的key
-        authCode: googleForm.value.authCode.trim()
+        otp: googleForm.value.authCode.trim()
       }
     })
     // 处理提交结果
@@ -400,7 +400,7 @@ const submitBind = async () => {
     }
   } catch (error) {
     console.error('提交绑定异常：', error)
-    alert('绑定异常，请稍后重试')
+    alert(error.message)
   } finally {
     isLoading.value = false
     // 清空授权码输入框

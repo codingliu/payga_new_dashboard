@@ -19,11 +19,6 @@
       <a-form-item field="d"  :label="tr('转账账户')" :rules="[{required:true, message:'this is required'}]">
         <a-input v-model="form.d" :placeholder="tr('请输入转账账户')" />
       </a-form-item>
-      <a-form-item field="a" :label="tr('银行/类型')" :rules="[{required:true, message:'this is required'}]">
-        <a-select v-model="form.a" :placeholder="tr('请选择收款银行')" allow-clear>
-          <a-option v-for="item in state.bankOption" :value="item.a" :label="item.name" :key="item.a"></a-option>
-        </a-select>
-      </a-form-item>
       <a-form-item field="b" :label="tr('收款人')" :rules="[{required:true, message:'this is required'}]">
         <a-input v-model="form.b" :placeholder="tr('请输入收款人真实姓名')" />
       </a-form-item>
