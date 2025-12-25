@@ -4,40 +4,40 @@
     <div class="search-area">
       <div class="search-row">
         <div class="search-item">
-          <label class="search-label">商户订单号</label>
+          <label class="search-label">{{tr('商户订单号')}}</label>
           <!-- 字段名 merchantOrderNo 与API参数名一致 -->
           <a-input
               v-model="searchForm.merchantOrderNo"
-              placeholder="请输入商户订单号"
+              placeholder="{{tr('请输入商户订单号')}}"
               class="search-input"
           />
         </div>
         <div class="search-item">
-          <label class="search-label">平台订单号</label>
+          <label class="search-label">{{tr('平台订单号')}}</label>
           <!-- 字段名 platNo 与API参数名一致 -->
           <a-input
               v-model="searchForm.platNo"
-              placeholder="请输入平台订单号"
+              placeholder="{{tr('请输入平台订单号')}}"
               class="search-input"
           />
         </div>
         <div class="search-item">
-          <label class="search-label">支付状态</label>
+          <label class="search-label">{{tr('支付状态')}}</label>
           <a-select
               v-model="searchForm.paymentStatus"
-              placeholder="请选择支付状态"
+              placeholder="{{tr('请选择支付状态')}}"
               class="search-input"
           >
-            <a-option value="">全部</a-option>
-            <a-option value="SUCCESS">成功</a-option>
-            <a-option value="FAILED">失败</a-option>
-            <a-option value="PAYING">支付中</a-option>
+            <a-option value="">{{tr('全部')}}</a-option>
+            <a-option value="SUCCESS">{{tr('成功')}}</a-option>
+            <a-option value="FAILED">{{tr('失败')}}</a-option>
+            <a-option value="PAYING">{{tr('支付中')}}</a-option>
           </a-select>
         </div>
       </div>
       <div class="search-row">
         <div class="search-item">
-          <label class="search-label">银行流水号</label>
+          <label class="search-label">{{tr('银行流水号')}}</label>
           <a-input
               v-model="searchForm.trxId"
               placeholder="请输入银行流水号"
@@ -45,7 +45,7 @@
           />
         </div>
         <div class="search-item">
-          <label class="search-label">金额</label>
+          <label class="search-label">{{tr('金额')}}</label>
           <div class="amount-group">
             <a-input
                 v-model="searchForm.minAmount"
@@ -63,7 +63,7 @@
           </div>
         </div>
         <div class="search-item">
-          <label class="search-label">收款人姓名</label>
+          <label class="search-label">{{tr('收款人姓名')}}</label>
           <a-input
               v-model="searchForm.payeeName"
               placeholder="请输入付款人姓名"
@@ -73,7 +73,7 @@
       </div>
       <div class="search-row">
         <div class="search-item">
-          <label class="search-label">收款人手机号</label>
+          <label class="search-label">{{tr('收款人手机号')}}</label>
           <a-input
               v-model="searchForm.payeeMobile"
               placeholder="请输入付款人手机号"
@@ -81,7 +81,7 @@
           />
         </div>
         <div class="search-item">
-          <label class="search-label">收款人邮箱</label>
+          <label class="search-label">{{tr('收款人邮箱')}}</label>
           <a-input
               v-model="searchForm.payeeEmail"
               placeholder="请输入付款人邮箱"
@@ -89,21 +89,21 @@
           />
         </div>
         <div class="search-item">
-          <label class="search-label">清算状态</label>
+          <label class="search-label">{{tr('清算状态')}}</label>
           <a-select
               v-model="searchForm.settlementStatus"
               placeholder="请选择清算状态"
               class="search-input"
           >
-            <a-option value="">全部</a-option>
-            <a-option value="SETTLED">已清算</a-option>
-            <a-option value="UNSETTLED">未清算</a-option>
+            <a-option value="">{{tr('全部')}}</a-option>
+            <a-option value="SETTLED">{{tr('已清算')}}</a-option>
+            <a-option value="UNSETTLED">{{tr('未清算')}}</a-option>
           </a-select>
         </div>
       </div>
       <div class="search-row">
         <div class="search-item">
-          <label class="search-label">创建时间</label>
+          <label class="search-label">{{tr('创建时间')}}</label>
           <a-range-picker
               v-model="searchForm.createTimeRange"
               placeholder="选择时间范围"
@@ -114,7 +114,7 @@
           />
         </div>
         <div class="search-item">
-          <label class="search-label">更新时间</label>
+          <label class="search-label">{{tr('更新时间')}}</label>
           <a-range-picker
               v-model="searchForm.createTimeRange"
               placeholder="选择时间范围"
@@ -125,13 +125,13 @@
           />
         </div>
         <div class="search-item">
-          <label class="search-label">币种</label>
+          <label class="search-label">{{tr('币种')}}</label>
           <a-select
               v-model="searchForm.currency"
               placeholder="请选择币种"
               class="search-input"
           >
-            <a-option value="">全部</a-option>
+            <a-option value="">{{tr('全部')}}</a-option>
             <a-option value="INR">INR</a-option>
           </a-select>
         </div>
@@ -140,9 +140,9 @@
 
     <!-- 第二层：操作按钮区域 -->
     <div class="button-area">
-      <a-button type="primary" icon="search" style="background-color: #5d87ff" @click="handleSearch()">搜索</a-button>
-      <a-button type="primary" icon="refresh" style="margin-left: 8px; background-color: #5d87ff" @click="handleReset()">重置</a-button>
-      <a-button type="primary" icon="download" style="margin-left: 8px; background-color: #5d87ff" @click="handleExport()">导出</a-button>
+      <a-button type="primary" icon="search" style="background-color: #5d87ff" @click="handleSearch()">{{tr('搜索')}}</a-button>
+      <a-button type="primary" icon="refresh" style="margin-left: 8px; background-color: #5d87ff" @click="handleReset()">{{tr('重置')}}</a-button>
+      <a-button type="primary" icon="download" style="margin-left: 8px; background-color: #5d87ff" @click="handleExport()">{{tr('导出')}}</a-button>
     </div>
     <!-- 新增：分隔线（区分按钮和统计卡片） -->
     <div class="divider"></div>
@@ -150,23 +150,23 @@
     <div class="stats-area">
       <div class="stats-card blue">
         <div class="stats-value">{{ statsData.successAmount }}</div>
-        <div class="stats-label">成功金额</div>
+        <div class="stats-label">{{tr('成功金额')}}</div>
       </div>
       <div class="stats-card purple">
         <div class="stats-value">{{ statsData.successFee }}</div>
-        <div class="stats-label">成功费用</div>
+        <div class="stats-label">{{tr('成功费用')}}</div>
       </div>
       <div class="stats-card green">
         <div class="stats-value">{{ statsData.successCount }}</div>
-        <div class="stats-label">成功单数</div>
+        <div class="stats-label">{{tr('成功单数')}}</div>
       </div>
       <div class="stats-card orange">
         <div class="stats-value">{{ statsData.totalCount }}</div>
-        <div class="stats-label">总单数</div>
+        <div class="stats-label">{{tr('总单数')}}</div>
       </div>
       <div class="stats-card yellow">
         <div class="stats-value">{{ statsData.successRate }}</div>
-        <div class="stats-label">成功率</div>
+        <div class="stats-label">{{tr('成功率')}}</div>
       </div>
     </div>
 
@@ -179,7 +179,7 @@
           :pagination="false"
           :scroll="{ x: 'max-content' }"
           :loading="tableLoading"
-          loading-text="正在查询数据，请稍候..."
+          loading-text="Loading..."
           :key="paginationConfig.current + '-' + paginationConfig.pageSize" >
         <template #state="{ record }">
           <span :class="getStateClass(record.paymentStatus)">{{ record.paymentStatus }}</span>
@@ -192,7 +192,7 @@
               @click="handleCallback(record)"
               :loading="callbackLoadingMap[record.merchantOrderNo]"
           >
-            回调
+            {{tr('回调')}}
           </a-button>
         </template>
       </a-table>
@@ -234,7 +234,7 @@ import qs from "qs";
 
 // 统计数据
 const statsData = reactive({
-  totalOrder: '0单',
+  totalOrder: '0 Order',
   totalAmount: '0 INR',
   successAmount: '0 INR',
   refundAmount: '0 INR',
@@ -259,23 +259,23 @@ const searchForm = reactive({
 })
 // 表格列配置
 const columns = reactive([
-  { title: '币种', dataIndex: 'currency' },
-  { title: '商户编号', dataIndex: 'merchantId', className: 'custom-number-class' },
-  { title: '商户订单号', dataIndex: 'merchantOrderNo', className: 'custom-number-class' },
-  { title: '平台订单号', dataIndex: 'platNo' },
-  { title: '支付方式', dataIndex: 'paymentMethod' },
-  { title: '收款人姓名', dataIndex: 'payeeInfo' },
-  { title: '收款人手机号', dataIndex: 'payerPhone' },
-  { title: '收款人邮箱', dataIndex: 'payeeEmail' },
-  { title: '支付金额', dataIndex: 'actualAmount' },
-  { title: '金额', dataIndex: 'amount' },
-  { title: '费用', dataIndex: 'fee' },
-  { title: '银行流水号', dataIndex: 'trxId' },
-  { title: '备注', dataIndex: 'remark' },
-  { title: '创建时间', dataIndex: 'createdTime' },
+  { title: tr('币种'), dataIndex: 'currency' },
+  { title: tr('商户编号'), dataIndex: 'merchantId', className: 'custom-number-class' },
+  { title: tr('商户订单号'), dataIndex: 'merchantOrderNo', className: 'custom-number-class' },
+  { title: tr('平台订单号'), dataIndex: 'platNo' },
+  { title: tr('支付方式'), dataIndex: 'paymentMethod' },
+  { title: tr('收款人姓名'), dataIndex: 'payeeInfo' },
+  { title: tr('收款人手机号'), dataIndex: 'payerPhone' },
+  { title: tr('收款人邮箱'), dataIndex: 'payeeEmail' },
+  { title: tr('支付金额'), dataIndex: 'actualAmount' },
+  { title: tr('金额'), dataIndex: 'amount' },
+  { title: tr('费用'), dataIndex: 'fee' },
+  { title: tr('银行流水号'), dataIndex: 'trxId' },
+  { title: tr('备注'), dataIndex: 'remark' },
+  { title: tr('创建时间'), dataIndex: 'createdTime' },
   // 新增：状态列（固定在右侧）
   {
-    title: '状态',
+    title: tr('状态'),
     dataIndex: 'paymentStatus',
     slotName: 'state',
     width: 150,
@@ -283,7 +283,7 @@ const columns = reactive([
   },
   // 操作列（固定在右侧）
   {
-    title: '操作',
+    title: tr('操作'),
     slotName: 'operation',
     width: 80,
     fixed: 'right' // 固定在右侧
@@ -347,10 +347,10 @@ const getPayList = async (page = 1, limit = 15, searchParams = {}) => {
       paginationConfig.pageSize = paginator.limit;
       paginationConfig.total = paginator.totalCount;
     } else {
-      console.error('获取支付列表失败：', res.message);
+      console.error('failed：', res.message);
     }
   } catch (error) {
-    console.error('获取支付列表异常：', error);
+    console.error('failed：', error);
   } finally {
     tableLoading.value = false;
   }
@@ -425,15 +425,15 @@ const handleExport = async () => {
         Message.success('Excel Export Success');
       } else {
         // 响应状态异常
-        Message.error(`导出失败，状态码：${xhr.status}`);
+        Message.error(`failed，code：${xhr.status}`);
       }
       exportLoading.value = false;
     };
     xhr.send();
   } catch (error) {
     exportLoading.value = false;
-    console.error('导出触发失败：', error);
-    Message.error('导出触发失败，请重试');
+    console.error('failed：', error);
+    Message.error('failed, pls try again');
   }
 }
 const callbackLoadingMap = reactive({})
@@ -456,11 +456,11 @@ const handleCallback = async (record) => {
       // 可选：刷新表格数据，更新回调后的状态
       // getPayList();
     } else {
-      Message.error(res.message || '回调请求失败');
+      Message.error(res.message );
     }
   } catch (error) {
-    console.error('回调请求异常：', error);
-    Message.error('网络异常，回调请求失败');
+    console.error('failed：', error);
+    Message.error('failed, pls try again');
   } finally {
     // 关闭当前行的loading状态
     callbackLoadingMap[orderNo] = false;
@@ -524,11 +524,11 @@ async function getStatsData() {
 
     statsData.successAmount = `${data.successAmount || 0} INR`;
     statsData.successFee = `${data.successFee || 0} INR`;
-    statsData.successCount = `${data.successCount || 0} 单`;
-    statsData.totalCount = `${data.totalCount || 0} 单`;
+    statsData.successCount = `${data.successCount || 0} Order`;
+    statsData.totalCount = `${data.totalCount || 0} Order`;
     statsData.successRate = `${data.successRate || 0} %`;
   } catch (error) {
-    console.error('获取统计数据失败：', error);
+    console.error('failed：', error);
   }
 }
 // 分页配置（绑定接口返回的分页信息）
