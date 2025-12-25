@@ -59,7 +59,7 @@
     <div class="tab-content">
       <!-- 加载状态提示 -->
       <div class="loading-tip" v-if="isLoading">
-        {{tr('正在加载数据...')}}
+        Loading
       </div>
 
       <!-- 1. 基础配置Tab -->
@@ -67,8 +67,8 @@
         <div class="tip-box">
           <span class="tip-icon">⚠</span>
           <div class="tip-text">
-            <p>如果你想与PayGa团队顺利交流,你需要知道你的商户编号</p>
-            <p>如果你还处于对接过程中,请使用测试服务器</p>
+            <p>If you want to communicate smoothly with the PayGa team, you need to know your merchant number.</p>
+            <p>If you are still in the process of connection, please use the test server.</p>
           </div>
         </div>
         <div class="form-container">
@@ -102,7 +102,7 @@
         <div class="tip-box">
           <span class="tip-icon">⚠</span>
           <div class="tip-text">
-            <p>IP白名单是指一组IP地址,组中的IP地址被认为是可信的或被授权的,可以访问网络,系统或服务. 它本质上是一个IP地址集合,这些地址已被明确允许或授权连接到特定资源</p>
+            <p>White IP list refers to a list of IP addresses that are considered trusted or authorized to access a network, system, or service. It is essentially a collection of IP addresses that have been explicitly allowed or given permission to connect to a particular resource.</p>
           </div>
         </div>
         <div class="form-container">
@@ -145,7 +145,7 @@
               <input
                   type="text"
                   class="form-input"
-                  :value="googleForm.secretKey || tr('无')"
+                  :value="googleForm.secretKey || tr('NULL')"
                   readonly
               >
             </div>
@@ -167,7 +167,7 @@
 
             <!-- 授权码输入框 -->
             <div class="form-item">
-              <label class="form-label">{{tr('授权码')}}</label>
+              <label class="form-label">OTP</label>
               <div class="input-group" style="width: 20%">
                 <input maxlength="20"
                        type="text"
@@ -195,21 +195,21 @@
           <div class="form-item">
             <label class="form-label">{{tr('当前密码')}}</label>
             <div class="input-group">
-              <input type="password" class="form-input" v-model="pwdForm.oldPassword" placeholder="{{tr('请输入当前登录密码')}}">
+              <input type="password" class="form-input" v-model="pwdForm.oldPassword" :placeholder="tr('请输入当前密码')">
             </div>
             <div class="error-text" v-if="pwdFormError.oldPassword">{{tr('请输入当前密码')}}</div>
           </div>
           <div class="form-item">
             <label class="form-label">{{tr('新密码')}}</label>
             <div class="input-group">
-              <input type="password" class="form-input" v-model="pwdForm.newPassword" placeholder="{{tr('请输入6-16位新密码，包含字母和数字')}}">
+              <input type="password" class="form-input" v-model="pwdForm.newPassword" :placeholder="tr('请输入6-16位新密码，包含字母和数字')">
             </div>
             <div class="error-text" v-if="pwdFormError.newPassword">{{tr('新密码格式不正确（6-16位，含字母和数字）')}}</div>
           </div>
           <div class="form-item">
             <label class="form-label">{{tr('确认新密码')}}</label>
             <div class="input-group">
-              <input type="password" class="form-input" v-model="pwdForm.confirmPassword" placeholder="{{tr('请再次输入新密码')}}">
+              <input type="password" class="form-input" v-model="pwdForm.confirmPassword" :placeholder="tr('请再次输入新密码')">
             </div>
             <div class="error-text" v-if="pwdFormError.confirmPassword">{{tr('两次输入的密码不一致')}}</div>
           </div>
@@ -226,7 +226,7 @@
         <div class="tip-box">
           <span class="tip-icon">ℹ</span>
           <div class="tip-text">
-            <p>以下是您当前已绑定的登录设备，如需删除异常设备，请点击对应操作按钮</p>
+            <p>The following are the currently bound login devices for you. If you want to delete an abnormal device, please click the corresponding operation button.</p>
           </div>
         </div>
         <div class="device-table">
@@ -235,7 +235,7 @@
             <tr>
               <th>{{tr('设备名称')}}</th>
               <th>{{tr('登录时间')}}</th>
-              <th>{{tr('登录')}}IP</th>
+              <th>{{tr('登录IP')}}</th>
               <th>{{tr('设备状态')}}</th>
               <th>{{tr('操作')}}</th>
             </tr>

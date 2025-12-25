@@ -57,7 +57,7 @@
             @click="handleExport"
             :loading="exportLoading"
         >
-          导出
+          {{tr('导出')}}
         </a-button>
         <a-button type="primary" icon="refresh" @click="handleReset" style="background-color: #5d87ff">{{tr('重置')}}</a-button>
       </div>

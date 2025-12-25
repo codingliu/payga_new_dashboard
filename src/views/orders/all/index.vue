@@ -8,7 +8,7 @@
           <!-- 字段名 merchantOrderNo 与API参数名一致 -->
           <a-input
               v-model="searchForm.merchantOrderNo"
-              placeholder="{{tr('请输入商户订单号')}}"
+              :placeholder="tr('请输入商户订单号')"
               class="search-input"
           />
         </div>
@@ -17,7 +17,7 @@
           <!-- 字段名 platNo 与API参数名一致 -->
           <a-input
               v-model="searchForm.platNo"
-              placeholder="{{tr('请输入平台订单号')}}"
+              :placeholder="tr('请输入平台订单号')"
               class="search-input"
           />
         </div>
@@ -25,7 +25,7 @@
           <label class="search-label">{{tr('支付状态')}}</label>
           <a-select
               v-model="searchForm.paymentStatus"
-              placeholder="请选择支付状态"
+              :placeholder="tr('请选择支付状态')"
               class="search-input"
           >
             <a-option value="">{{tr('全部')}}</a-option>
@@ -40,7 +40,7 @@
           <label class="search-label">{{tr('银行流水号')}}</label>
           <a-input
               v-model="searchForm.trxId"
-              placeholder="请输入银行流水号"
+              :placeholder="tr('请输入银行流水号')"
               class="search-input"
           />
         </div>
@@ -66,7 +66,7 @@
           <label class="search-label">{{tr('付款人姓名')}}</label>
           <a-input
               v-model="searchForm.payerInfo"
-              placeholder="请输入付款人姓名"
+              :placeholder="tr('请输入付款人姓名')"
               class="search-input"
           />
         </div>
@@ -76,7 +76,7 @@
           <label class="search-label">{{tr('付款人手机号')}}</label>
           <a-input
               v-model="searchForm.payerMobile"
-              placeholder="请输入付款人手机号"
+              :placeholder="tr('请输入付款人手机号')"
               class="search-input"
           />
         </div>
@@ -84,7 +84,7 @@
           <label class="search-label">{{tr('付款人邮箱')}}</label>
           <a-input
               v-model="searchForm.payerEmail"
-              placeholder="请输入付款人邮箱"
+              :placeholder="tr('请输入付款人邮箱')"
               class="search-input"
           />
         </div>
@@ -92,7 +92,7 @@
           <label class="search-label">{{tr('清算状态')}}</label>
           <a-select
               v-model="searchForm.settlementStatus"
-              placeholder="请选择清算状态"
+              :placeholder="tr('请选择清算状态')"
               class="search-input"
           >
             <a-option value="">{{tr('全部')}}</a-option>
@@ -106,7 +106,7 @@
           <label class="search-label">{{tr('创建时间')}}</label>
           <a-range-picker
               v-model="searchForm.createTimeRange"
-              placeholder="选择时间范围"
+              :placeholder="tr('选择时间范围')"
               class="search-input"
               show-time
               format="YYYY-MM-DD HH:mm:ss"
@@ -117,7 +117,7 @@
           <label class="search-label">{{tr('更新时间')}}</label>
           <a-range-picker
               v-model="searchForm.createTimeRange"
-              placeholder="选择时间范围"
+              :placeholder="tr('选择时间范围')"
               class="search-input"
               show-time
               format="YYYY-MM-DD HH:mm:ss"

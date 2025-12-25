@@ -23,7 +23,7 @@
           <label class="search-label">{{tr('交易流水hash')}}</label>
           <a-input
               v-model="searchForm.hash"
-              placeholder="tr('交易流水hash')"
+              :placeholder="tr('交易流水hash')"
               class="search-input"
           />
         </div>
@@ -31,7 +31,7 @@
           <label class="search-label">{{tr('收款地址')}}</label>
           <a-input
               v-model="searchForm.address"
-              placeholder="{{tr('收款地址')}}"
+              :placeholder="tr('收款地址')"
               class="search-input"
           />
         </div>
@@ -39,7 +39,7 @@
           <label class="search-label">{{tr('支付状态')}}</label>
           <a-select
               v-model="searchForm.status"
-              placeholder="{{tr('支付状态')}}"
+              :placeholder="tr('支付状态')"
               class="search-input"
           />
         </div>
@@ -50,7 +50,7 @@
           <label class="search-label">{{tr('平台订单号')}}</label>
           <a-input
               v-model="searchForm.orderNo"
-              placeholder="tr('平台订单号')"
+              :placeholder="tr('平台订单号')"
               class="search-input"
           />
         </div>
@@ -58,7 +58,7 @@
           <label class="search-label">{{tr('支付方式')}}</label>
           <a-select
               v-model="searchForm.payType"
-              placeholder="{{tr('支付方式')}}"
+              :placeholder="tr('支付方式')"
               class="search-input"
           />
         </div>
