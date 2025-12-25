@@ -4,8 +4,8 @@
     <div class="page-header">
       <div class="header-content">
         <div class="title-group">
-          <h1 class="main-title">Usdt结算</h1>
-          <div class="breadcrumbs">财务 · Usdt结算</div>
+          <h1 class="main-title">{{tr('Usdt结算')}}</h1>
+          <div class="breadcrumbs">{{tr('财务')}} · {{tr('Usdt结算')}}</div>
         </div>
         <div class="decor-icon">
           <div class="icon-wrapper">
@@ -20,26 +20,26 @@
     <div class="search-container">
       <div class="search-row">
         <div class="search-item">
-          <label class="search-label">交易流水hash</label>
+          <label class="search-label">{{tr('交易流水hash')}}</label>
           <a-input
               v-model="searchForm.hash"
-              placeholder="交易流水hash"
+              placeholder="{{tr('交易流水hash')}}"
               class="search-input"
           />
         </div>
         <div class="search-item">
-          <label class="search-label">收款地址</label>
+          <label class="search-label">{{tr('收款地址')}}</label>
           <a-input
               v-model="searchForm.address"
-              placeholder="收款地址"
+              placeholder="{{tr('收款地址')}}"
               class="search-input"
           />
         </div>
         <div class="search-item">
-          <label class="search-label">支付状态</label>
+          <label class="search-label">{{tr('支付状态')}}</label>
           <a-select
               v-model="searchForm.status"
-              placeholder="支付状态"
+              placeholder="{{tr('支付状态')}}"
               class="search-input"
           />
         </div>
@@ -47,23 +47,23 @@
 
       <div class="search-row">
         <div class="search-item">
-          <label class="search-label">平台订单号</label>
+          <label class="search-label">{{tr('平台订单号')}}</label>
           <a-input
               v-model="searchForm.orderNo"
-              placeholder="平台订单号"
+              placeholder="{{tr('平台订单号')}}"
               class="search-input"
           />
         </div>
         <div class="search-item">
-          <label class="search-label">支付方式</label>
+          <label class="search-label">{{tr('支付方式')}}</label>
           <a-select
               v-model="searchForm.payType"
-              placeholder="支付方式"
+              placeholder="{{tr('支付方式')}}"
               class="search-input"
           />
         </div>
         <div class="search-item">
-          <label class="search-label">创建时间</label>
+          <label class="search-label">{{tr('创建时间')}}</label>
           <a-range-picker
               v-model="searchForm.createTime"
               type="datetime"
@@ -75,10 +75,10 @@
       </div>
 
       <div class="button-group">
-        <a-button type="primary" icon="search" @click="handleSearch">搜索</a-button>
-        <a-button type="primary" icon="download" @click="handleExport" :loading="exportLoading">导出</a-button>
-        <a-button type="primary" icon="refresh" @click="handleReset">重置</a-button>
-        <a-button type="primary" icon="plus" @click="openCreateModal">新建</a-button>
+        <a-button type="primary" icon="search" @click="handleSearch">{{tr('搜索')}}</a-button>
+        <a-button type="primary" icon="download" @click="handleExport" :loading="exportLoading">{{tr('导出')}}</a-button>
+        <a-button type="primary" icon="refresh" @click="handleReset">{{tr('重置')}}</a-button>
+        <a-button type="primary" icon="plus" @click="openCreateModal">{{tr('新建')}}</a-button>
       </div>
     </div>
 
@@ -99,7 +99,7 @@
 
       <!-- 固定分页样式（共X项 + 页码数字） -->
       <div class="fixed-pagination">
-        <span class="total-text">共 {{ paginationConfig.total }} 项</span>
+        <span class="total-text">{{tr('共')}} {{ paginationConfig.total }} {{tr('项')}}</span>
         <a-pagination
             v-model:current="paginationConfig.current"
             :total="paginationConfig.total"
@@ -116,13 +116,13 @@
     <!-- 新建弹窗 -->
     <a-modal
         v-model:visible="createModalVisible"
-        title="Usdt结算"
+        title="{{tr('Usdt结算')}}"
         :footer="null"
         @cancel="createModalVisible = false"
     >
       <div class="modal-form">
         <div class="form-item">
-          <label class="form-label">可用余额</label>
+          <label class="form-label">{{tr('可用余额')}}</label>
           <div class="balance-group">
             <a-input v-model="createForm.balance" disabled />
             <span class="currency">INR</span>
@@ -130,29 +130,29 @@
         </div>
 
         <div class="form-item">
-          <label class="form-label">收款地址</label>
+          <label class="form-label">{{tr('收款地址')}}</label>
           <div class="address-group">
             <a-select
                 v-model="createForm.addressType"
                 :options="addressTypeOptions"
                 style="width: 100px; margin-right: 8px;"
             />
-            <a-input v-model="createForm.address" placeholder="请输入收款地址" />
+            <a-input v-model="createForm.address" placeholder="{{tr('请输入收款地址')}}" />
           </div>
         </div>
 
         <div class="form-item">
-          <label class="form-label">结算金额(最小:100000 INR)</label>
+          <label class="form-label">{{tr('结算金额')}}({{tr('最小')}}:100000 INR)</label>
           <div class="rate-group">
-            <a-input v-model="createForm.amount" placeholder="请输入结算金额" @input="calcUsdt" />
-            <span class="rate-text">汇率: 1 USDT = {{ exchangeRate }} INR</span>
+            <a-input v-model="createForm.amount" placeholder="{{tr('请输入结算金额')}}" @input="calcUsdt" />
+            <span class="rate-text">{{tr('汇率')}}: 1 USDT = {{ exchangeRate }} INR</span>
             <span class="usdt-convert">{{ `INR = ${createForm.usdtAmount} USDT` }}</span>
           </div>
         </div>
 
         <div class="form-item">
-          <label class="form-label">备注</label>
-          <a-input v-model="createForm.remark" placeholder="受益人将收到在此填写的内容" />
+          <label class="form-label">{{tr('备注')}}</label>
+          <a-input v-model="createForm.remark" placeholder="{{tr('受益人将收到在此填写的内容')}}" />
         </div>
         <div class="form-item">
           <label class="form-label">Google Auth</label>
@@ -161,15 +161,15 @@
 
         <div class="form-item">
           <div class="fee-info">
-            <p>费用: {{ createForm.fee }} USDT</p>
-            <p>总扣款: {{ createForm.totalDeduct }} INR</p>
-            <p>收到数量: {{ createForm.usdtAmount }} USDT</p>
+            <p>{{tr('费用')}}: {{ createForm.fee }} USDT</p>
+            <p>{{tr('总扣款')}}: {{ createForm.totalDeduct }} INR</p>
+            <p>{{tr('收到数量')}}: {{ createForm.usdtAmount }} USDT</p>
           </div>
         </div>
 
         <div class="modal-footer">
-          <a-button type="primary" block @click="handleSubmit">提交</a-button>
-          <a-button type="default" block @click="createModalVisible = false">取消</a-button>
+          <a-button type="primary" block @click="handleSubmit">{{tr('提交')}}</a-button>
+          <a-button type="default" block @click="createModalVisible = false">{{tr('取消')}}</a-button>
         </div>
       </div>
     </a-modal>
@@ -182,7 +182,7 @@ import {
   Input, Select, RangePicker, Button, Table, Pagination, Modal, Message
 } from '@arco-design/web-vue'
 import { request } from "@/utils/request";
-import qs from 'qs';
+import {tr} from "@/utils/common";
 import dayjs from 'dayjs';
 
 // 搜索表单（默认最近三天）
@@ -226,31 +226,31 @@ const getExchangeRate = async () => {
       exchangeRate.value = res.data.accountBaseInfoVo.usdtRate || 98.5; // 若接口返回失败，使用备用值98.5
       createForm.balance = res.data.accountBaseInfoVo.available || 0;
     } else {
-      Message.warning('获取汇率失败，使用默认汇率');
+      Message.warning('FAILED LOADING RATE');
       exchangeRate.value = 98.5; // 备用值
     }
   } catch (err) {
-    console.error('获取汇率异常:', err);
-    Message.error('网络异常，汇率获取失败，使用默认汇率');
+    console.error('FAILED:', err);
+    Message.error('FAILED LOADING RATE');
     exchangeRate.value = 98.5; // 备用值
   }
 }
 
 // 表格列配置
 const columns = reactive([
-  { title: '币种', dataIndex: 'currency' },
-  { title: '平台订单号', dataIndex: 'platNo' },
-  { title: '支付方式', dataIndex: 'paymentMethod' },
-  { title: '收款地址', dataIndex: 'receiveAddress' },
-  { title: '结算金额', dataIndex: 'appliedAmount', className: 'custom-number' },
-  { title: '汇率', dataIndex: 'rate', className: 'custom-number' },
-  { title: '费用', dataIndex: 'fee', className: 'custom-number' },
-  { title: 'Usdt金额', dataIndex: 'arriveAmount', className: 'custom-number' },
-  { title: '备注', dataIndex: 'remark' },
-  { title: '交易流水hash', dataIndex: 'hash' },
-  { title: '创建时间', dataIndex: 'createdTime' },
-  { title: '更新时间', dataIndex: 'updatedTime' },
-  { title: '状态', dataIndex: 'paymentStatus',slotName: 'state' },
+  { title: tr('币种'), dataIndex: 'currency' },
+  { title: tr('平台订单号'), dataIndex: 'platNo' },
+  { title: tr('支付方式'), dataIndex: 'paymentMethod' },
+  { title: tr('收款地址'), dataIndex: 'receiveAddress' },
+  { title: tr('结算金额'), dataIndex: 'appliedAmount', className: 'custom-number' },
+  { title: tr('汇率'), dataIndex: 'rate', className: 'custom-number' },
+  { title: tr('费用'), dataIndex: 'fee', className: 'custom-number' },
+  { title: tr('Usdt金额'), dataIndex: 'arriveAmount', className: 'custom-number' },
+  { title: tr('备注'), dataIndex: 'remark' },
+  { title: tr('交易流水hash'), dataIndex: 'hash' },
+  { title: tr('创建时间'), dataIndex: 'createdTime' },
+  { title: tr('更新时间'), dataIndex: 'updatedTime' },
+  { title: tr('状态'), dataIndex: 'paymentStatus',slotName: 'state' },
   //{ title: '操作', dataIndex: 'action' }
 ])
 
@@ -321,11 +321,11 @@ const getUsdtData = async () => {
       paginationConfig.pageSize = paginator.limit;
       paginationConfig.total = paginator.totalCount;
     } else {
-      Message.error(res.message || '获取数据失败');
+      Message.error(res.message);
     }
   } catch (err) {
-    console.error('获取数据异常:', err);
-    Message.error('网络异常，请重试');
+    console.error('failed:', err);
+    Message.error('failed, pls try again');
   } finally {
     tableLoading.value = false;
   }
@@ -404,11 +404,11 @@ const openCreateModal = () => {
 // 提交新建
 const handleSubmit = async () => {
   if (!createForm.address || !createForm.amount) {
-    Message.warning('请填写收款地址和结算金额');
+    Message.warning('pls input address and amount');
     return;
   }
   if (Number(createForm.amount) < 100000) {
-    Message.warning('结算金额不能小于100000 INR');
+    Message.warning('Settle amount cant less than 100000 INR');
     return;
   }
 
@@ -426,15 +426,15 @@ const handleSubmit = async () => {
       }
     });
     if (res.code === '200') {
-      Message.success('提交成功');
+      Message.success('Submit Success');
       createModalVisible.value = false;
       getUsdtData();
     } else {
-      Message.error(res.message || '提交失败');
+      Message.error(res.message);
     }
   } catch (err) {
-    console.error('提交异常:', err);
-    Message.error('网络异常，请重试');
+    console.error('failed:', err);
+    Message.error('failed, pls try again');
   }
 }
 

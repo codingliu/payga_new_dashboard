@@ -4,8 +4,8 @@
     <div class="finance-header">
       <div class="header-content">
         <div class="title-group">
-          <h1 class="main-title">账务变动</h1>
-          <div class="breadcrumbs">财务 · 账务变动</div>
+          <h1 class="main-title">{{tr('账务变动')}}</h1>
+          <div class="breadcrumbs">{{tr('财务 ')}}· {{tr('账务变动')}}</div>
         </div>
         <div class="decor-icon">
           <div class="icon-wrapper">
@@ -20,7 +20,7 @@
     <div class="search-container">
       <div class="search-row">
         <div class="search-item">
-          <label class="search-label">平台订单号</label>
+          <label class="search-label">{{tr('平台订单号')}}</label>
           <a-input
               v-model="searchForm.platNo"
               placeholder="请输入平台订单号"
@@ -28,18 +28,18 @@
           />
         </div>
         <div class="search-item">
-          <label class="search-label">类型</label>
+          <label class="search-label">{{tr('类型')}}</label>
           <a-select
               v-model="searchForm.type"
               placeholder="请选择类型"
               class="search-input">
-          <a-option value="">全部</a-option>
+          <a-option value="">{{tr('全部')}}</a-option>
           <a-option value="PAYIN">PAYIN</a-option>
           <a-option value="PAYOUT">PAYOUT</a-option>
           </a-select>
         </div>
         <div class="search-item">
-          <label class="search-label">创建时间</label>
+          <label class="search-label">{{tr('创建时间')}}</label>
           <a-range-picker
               v-model="searchForm.createTime"
               type="datetime"
@@ -51,7 +51,7 @@
       </div>
 
       <div class="button-group">
-        <a-button type="primary" icon="search" @click="handleSearch" style="background-color: #5d87ff">搜索</a-button>
+        <a-button type="primary" icon="search" @click="handleSearch" style="background-color: #5d87ff">{{tr('搜索')}}</a-button>
         <a-button type="primary" style="background-color: #5d87ff"
             icon="download"
             @click="handleExport"
@@ -59,7 +59,7 @@
         >
           导出
         </a-button>
-        <a-button type="primary" icon="refresh" @click="handleReset" style="background-color: #5d87ff">重置</a-button>
+        <a-button type="primary" icon="refresh" @click="handleReset" style="background-color: #5d87ff">{{tr('重置')}}</a-button>
       </div>
     </div>
 
@@ -97,7 +97,7 @@ import {
 } from '@arco-design/web-vue'
 import { request } from "@/utils/request";
 import qs from 'qs';
-
+import {tr} from "@/utils/common";
 // 搜索表单
 const searchForm = reactive({
   platNo: '',
@@ -127,15 +127,15 @@ const paginationConfig = reactive({
 
 // 表格列配置
 const columns = reactive([
-  { title: '类型', dataIndex: 'transType', width: 120 },
-  { title: '余额变动类型', dataIndex: 'balChangeType', width: 150 },
-  { title: '流水号', dataIndex: 'relatedPaymentId', width: 200 },
-  { title: '金额', dataIndex: 'tradeAmount', width: 120, className: 'custom-number-class' },
-  { title: '费用', dataIndex: 'feeAmount', width: 120, className: 'custom-number-class' },
-  { title: '发生前总金额', dataIndex: 'openingTotalAmount', width: 150, className: 'custom-number-class' },
-  { title: '发生后总金额', dataIndex: 'endTotalAmount', width: 150, className: 'custom-number-class' },
-  { title: '交易备注', dataIndex: 'remark', width: 200 },
-  { title: '创建时间', dataIndex: 'createdAt', width: 200 }
+  { title: tr('类型'), dataIndex: 'transType', width: 120 },
+  { title: tr('余额变动类型'), dataIndex: 'balChangeType', width: 150 },
+  { title: tr('流水号'), dataIndex: 'relatedPaymentId', width: 200 },
+  { title: tr('金额'), dataIndex: 'tradeAmount', width: 120, className: 'custom-number-class' },
+  { title: tr('费用'), dataIndex: 'feeAmount', width: 120, className: 'custom-number-class' },
+  { title: tr('发生前总金额'), dataIndex: 'openingTotalAmount', width: 150, className: 'custom-number-class' },
+  { title: tr('发生后总金额'), dataIndex: 'endTotalAmount', width: 150, className: 'custom-number-class' },
+  { title: tr('交易备注'), dataIndex: 'remark', width: 200 },
+  { title: tr('创建时间'), dataIndex: 'createdAt', width: 200 }
 ])
 
 // 获取账务变动列表
@@ -175,12 +175,12 @@ const getBalList = async () => {
       paginationConfig.pageSize = paginator.limit;
       paginationConfig.total = paginator.totalCount;
     } else {
-      Message.error(res.message || '获取账务变动列表失败');
+      Message.error(res.message );
       paginationConfig.total = 0;
     }
   } catch (error) {
-    console.error('获取账务变动列表异常：', error);
-    Message.error('网络异常，获取账务变动列表失败');
+    console.error('failed loading：', error);
+    Message.error('failed, pls try again');
     paginationConfig.total = 0;
   } finally {
     await nextTick();
@@ -258,24 +258,24 @@ const handleExport = () => {
           URL.revokeObjectURL(downloadUrl);
           document.body.removeChild(a);
         }, 100);
-        Message.success('账务变动Excel导出成功');
+        Message.success('Export Success');
       } else {
-        Message.error(`导出失败，状态码：${xhr.status}`);
+        Message.error(`failed，code：${xhr.status}`);
       }
       exportLoading.value = false;
     };
 
     xhr.onerror = function () {
-      console.error('导出请求网络异常');
-      Message.error('网络异常，导出失败');
+      console.error('failed');
+      Message.error('failed, pls try again');
       exportLoading.value = false;
     };
 
     xhr.send();
   } catch (error) {
     exportLoading.value = false;
-    console.error('导出触发失败：', error);
-    Message.error('导出触发失败，请重试');
+    console.error('failed：', error);
+    Message.error('failed, pls try again');
   }
 }
 
