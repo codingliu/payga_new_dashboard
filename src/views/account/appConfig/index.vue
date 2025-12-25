@@ -3,8 +3,8 @@
     <!-- 顶部标题模块（圆角+背景色） -->
     <div class="page-header">
       <div class="header-left">
-        <h2 class="page-title">配置</h2>
-        <p class="page-subtitle">设置 · 配置</p>
+        <h2 class="page-title">{{tr('配置')}}</h2>
+        <p class="page-subtitle">{{tr('设置')}} · {{tr('配置')}}</p>
       </div>
       <div class="header-right">
         <div class="decor-icon">
@@ -23,7 +23,7 @@
           :class="{ active: activeTab === 'base' }"
           @click="activeTab = 'base'"
       >
-        配置
+        {{tr('配置')}}
       </div>
       <div
           class="tab-item"
@@ -44,14 +44,14 @@
           :class="{ active: activeTab === 'password' }"
           @click="activeTab = 'password'"
       >
-        密码
+        {{tr('密码')}}
       </div>
       <div
           class="tab-item"
           :class="{ active: activeTab === 'device' }"
           @click="activeTab = 'device'"
       >
-        设备
+        {{tr('设备')}}
       </div>
     </div>
 
@@ -59,7 +59,7 @@
     <div class="tab-content">
       <!-- 加载状态提示 -->
       <div class="loading-tip" v-if="isLoading">
-        正在加载数据...
+        {{tr('正在加载数据...')}}
       </div>
 
       <!-- 1. 基础配置Tab -->
@@ -98,7 +98,7 @@
 
       <!-- 2. Api密钥Tab -->
       <div v-if="activeTab === 'api' && !isLoading">
-        <div class="section-title">API IP白名单</div>
+        <div class="section-title">API IP{{tr('白名单')}}</div>
         <div class="tip-box">
           <span class="tip-icon">⚠</span>
           <div class="tip-text">
@@ -107,7 +107,7 @@
         </div>
         <div class="form-container">
           <div class="form-item">
-            <label class="form-label">商户编号</label>
+            <label class="form-label">{{tr('商户编号')}}</label>
             <div class="input-group">
               <input type="text" class="form-input" :value="apiForm.merchantId" readonly>
             </div>
@@ -115,37 +115,37 @@
           <div class="form-item">
             <label class="form-label">API IP</label>
             <div class="input-group">
-              <input type="text" class="form-input" v-model="apiForm.apiIp" placeholder="请输入您的代收款服务器IP地址">
+              <input type="text" class="form-input" v-model="apiForm.apiIp" placeholder="{{tr('请输入您的代收款服务器IP地址')}}">
             </div>
-            <div class="error-text" v-if="apiFormError.payIp">请输入有效的IP地址</div>
+            <div class="error-text" v-if="apiFormError.payIp">{{tr('请输入有效的IP地址')}}</div>
           </div>
           <div class="form-item btn-wrap">
             <label class="form-label"></label>
-            <button class="save-btn" @click="saveApiForm">保存</button>
+            <button class="save-btn" @click="saveApiForm">{{tr('保存')}}</button>
           </div>
         </div>
       </div>
 
       <!-- 3. Google验证Tab -->
       <div v-if="activeTab === 'google' && !isLoading">
-        <div class="section-title">谷歌验证设置</div>
+        <div class="section-title">{{tr('谷歌验证设置')}}</div>
         <div class="form-container">
           <!-- 谷歌验证状态（只读展示，不可切换） -->
           <div class="form-item">
-            <label class="form-label">谷歌验证状态</label>
+            <label class="form-label">{{tr('谷歌验证状态')}}</label>
             <div class="status-display" style="width: 20%">
-              {{ googleForm.status === '1' ? '开启' : '关闭' }}
+              {{ googleForm.status === '1' ? tr('开启') : tr('关闭') }}
             </div>
           </div>
 
           <!-- 开启状态（status=1）：仅显示谷歌验证密钥（无保存按钮） -->
           <div class="form-item" v-if="googleForm.status === '1'">
-            <label class="form-label">谷歌验证密钥</label>
+            <label class="form-label">{{tr('谷歌验证密钥')}}</label>
             <div class="input-group" style="width: 20%">
               <input
                   type="text"
                   class="form-input"
-                  :value="googleForm.secretKey || '无'"
+                  :value="googleForm.secretKey || tr('无')"
                   readonly
               >
             </div>
@@ -155,34 +155,34 @@
           <div v-if="googleForm.status === '0'">
             <!-- 二维码展示（300x300） -->
             <div class="qr-container">
-              <label class="form-label">谷歌验证二维码</label>
+              <label class="form-label">{{tr('谷歌验证二维码')}}</label>
               <img
                   :src="googleForm.qr"
-                  alt="谷歌验证二维码"
+                  alt="{{tr('谷歌验证二维码')}}"
                   class="qr-img"
                   v-if="googleForm.qr"
               >
-              <div class="empty-tip" v-else>二维码加载失败，请刷新页面</div>
+              <div class="empty-tip" v-else>{{tr('二维码加载失败，请刷新页面')}}</div>
             </div>
 
             <!-- 授权码输入框 -->
             <div class="form-item">
-              <label class="form-label">授权码</label>
+              <label class="form-label">{{tr('授权码')}}</label>
               <div class="input-group" style="width: 20%">
                 <input maxlength="20"
                        type="text"
                        class="form-input"
                        v-model="googleForm.authCode"
-                       placeholder="请输入谷歌验证APP中的授权码"
+                       placeholder="{{tr('请输入谷歌验证APP中的授权码')}}"
                 >
               </div>
-              <div class="error-text" v-if="googleFormError.authCode">请输入授权码</div>
+              <div class="error-text" v-if="googleFormError.authCode">{{tr('请输入授权码')}}</div>
             </div>
 
             <!-- 绑定按钮 -->
             <div class="form-item btn-wrap">
               <label class="form-label"></label>
-              <button class="bind-btn" @click="submitBind">提交绑定</button>
+              <button class="bind-btn" @click="submitBind">{{tr('提交绑定')}}</button>
             </div>
           </div>
         </div>
@@ -190,39 +190,39 @@
 
       <!-- 4. 密码Tab -->
       <div v-if="activeTab === 'password' && !isLoading">
-        <div class="section-title">修改登录密码</div>
+        <div class="section-title">{{tr('修改登录密码')}}</div>
         <div class="form-container">
           <div class="form-item">
-            <label class="form-label">当前密码</label>
+            <label class="form-label">{{tr('当前密码')}}</label>
             <div class="input-group">
-              <input type="password" class="form-input" v-model="pwdForm.oldPassword" placeholder="请输入当前登录密码">
+              <input type="password" class="form-input" v-model="pwdForm.oldPassword" placeholder="{{tr('请输入当前登录密码')}}">
             </div>
-            <div class="error-text" v-if="pwdFormError.oldPassword">请输入当前密码</div>
+            <div class="error-text" v-if="pwdFormError.oldPassword">{{tr('请输入当前密码')}}</div>
           </div>
           <div class="form-item">
-            <label class="form-label">新密码</label>
+            <label class="form-label">{{tr('新密码')}}</label>
             <div class="input-group">
-              <input type="password" class="form-input" v-model="pwdForm.newPassword" placeholder="请输入6-16位新密码，包含字母和数字">
+              <input type="password" class="form-input" v-model="pwdForm.newPassword" placeholder="{{tr('请输入6-16位新密码，包含字母和数字')}}">
             </div>
-            <div class="error-text" v-if="pwdFormError.newPassword">新密码格式不正确（6-16位，含字母和数字）</div>
+            <div class="error-text" v-if="pwdFormError.newPassword">{{tr('新密码格式不正确（6-16位，含字母和数字）')}}</div>
           </div>
           <div class="form-item">
-            <label class="form-label">确认新密码</label>
+            <label class="form-label">{{tr('确认新密码')}}</label>
             <div class="input-group">
-              <input type="password" class="form-input" v-model="pwdForm.confirmPassword" placeholder="请再次输入新密码">
+              <input type="password" class="form-input" v-model="pwdForm.confirmPassword" placeholder="{{tr('请再次输入新密码')}}">
             </div>
-            <div class="error-text" v-if="pwdFormError.confirmPassword">两次输入的密码不一致</div>
+            <div class="error-text" v-if="pwdFormError.confirmPassword">{{tr('两次输入的密码不一致')}}</div>
           </div>
           <div class="form-item btn-wrap">
             <label class="form-label"></label>
-            <button class="save-btn" @click="savePwdForm">修改密码</button>
+            <button class="save-btn" @click="savePwdForm">{{tr('修改密码')}}</button>
           </div>
         </div>
       </div>
 
       <!-- 5. 设备Tab -->
       <div v-if="activeTab === 'device' && !isLoading">
-        <div class="section-title">设备管理</div>
+        <div class="section-title">{{tr('设备管理')}}</div>
         <div class="tip-box">
           <span class="tip-icon">ℹ</span>
           <div class="tip-text">
@@ -233,11 +233,11 @@
           <table>
             <thead>
             <tr>
-              <th>设备名称</th>
-              <th>登录时间</th>
-              <th>登录IP</th>
-              <th>设备状态</th>
-              <th>操作</th>
+              <th>{{tr('设备名称')}}</th>
+              <th>{{tr('登录时间')}}</th>
+              <th>{{tr('登录')}}IP</th>
+              <th>{{tr('设备状态')}}</th>
+              <th>{{tr('操作')}}</th>
             </tr>
             </thead>
             <tbody>
@@ -245,9 +245,9 @@
               <td>{{ device.deviceName }}</td>
               <td>{{ device.loginTime }}</td>
               <td>{{ device.loginIp }}</td>
-              <td><span class="status-tag" :class="{ active: device.status === 'active' }">{{ device.status === 'active' ? '当前设备' : '已登录设备' }}</span></td>
+              <td><span class="status-tag" :class="{ active: device.status === 'active' }">{{ device.status === 'active' ? tr('当前设备') : tr('已登录设备')}}</span></td>
               <td>
-                <button class="delete-btn" @click="deleteDevice(index)" v-if="device.status !== 'active'">删除</button>
+                <button class="delete-btn" @click="deleteDevice(index)" v-if="device.status !== 'active'">{{tr('删除')}}</button>
               </td>
             </tr>
             </tbody>
@@ -258,7 +258,7 @@
 
     <!-- 复制成功Tip（屏幕中间显示） -->
     <div class="copy-tip" v-if="showCopyTip">
-      复制成功
+      {{tr('复制成功')}}
     </div>
     <!-- 复制成功Tip（屏幕中间显示） -->
     <div class="copy-tip" v-if="showSUCCESSTip">
@@ -270,7 +270,7 @@
 <script setup>
 import {ref, onMounted} from 'vue'
 import {request} from "@/utils/request";
-
+import {tr} from "@/utils/common";
 // 激活的Tab
 const activeTab = ref('base')
 // 复制成功Tip控制
@@ -364,8 +364,8 @@ onMounted(async () => {
       }
     }
   } catch (error) {
-    console.error('数据加载失败：', error)
-    alert('数据加载失败，请刷新页面重试')
+    console.error('failed loading：', error)
+    alert('failed, pls try again')
   } finally {
     // 无论成功失败，都关闭加载状态
     isLoading.value = false
@@ -377,7 +377,7 @@ const submitBind = async () => {
   // 前置校验
   googleFormError.value.authCode = ''
   if (!googleForm.value.authCode.trim()) {
-    googleFormError.value.authCode = '请输入授权码'
+    googleFormError.value.authCode = tr('请输入授权码')
     return
   }
   isLoading.value = true
@@ -392,14 +392,14 @@ const submitBind = async () => {
     })
     // 处理提交结果
     if (res.code === '200') {
-      alert('绑定成功')
+      alert(tr('绑定成功'))
       // 绑定成功后，可重新加载谷歌验证数据，更新状态
       onMounted() // 复用加载逻辑，刷新数据
     } else {
-      alert('绑定失败：' + (res.message || '未知错误'))
+      alert('failed, pls try again' + (res.msg))
     }
   } catch (error) {
-    console.error('提交绑定异常：', error)
+    console.error('failed:', error)
     alert(error.message)
   } finally {
     isLoading.value = false
@@ -432,7 +432,7 @@ const saveApiForm = async () => {
       showSUCCESSTip.value = false
     }, 3000)
   } else {
-    alert('保存失败：' + (res.msg || '未知错误'))
+    alert('failed, pls try again' + (res.msg))
   }
 }
 
@@ -444,12 +444,11 @@ const savePwdForm = async () => {
 
   // 校验规则
   if (!pwdForm.value.oldPassword) {
-    pwdFormError.value.oldPassword = '请输入当前密码'
+    pwdFormError.value.oldPassword = tr('请输入当前密码')
     isValid = false
   }
-  const pwdReg = /^(?=.*[a-zA-Z])(?=.*\d).{6,16}$/
   if (pwdForm.value.newPassword !== pwdForm.value.confirmPassword) {
-    pwdFormError.value.confirmPassword = '两次输入的密码不一致'
+    pwdFormError.value.confirmPassword = tr('两次输入的密码不一致')
     isValid = false
   }
   if (!isValid) return
@@ -469,7 +468,7 @@ const savePwdForm = async () => {
     // 重置表单
     pwdForm.value = {oldPwd: '', newPwd: '', confirmPwd: ''}
   } else {
-    alert('修改失败：' + (res.msg || '未知错误'))
+    alert('failed, pls try again' + (res.msg))
   }
 }
 

@@ -4,37 +4,37 @@
     <div class="balance-wrapper">
       <!-- 悬浮按钮组 -->
       <div class="top-buttons">
-        <div class="top-btn" @click="go2Path('/financial/billList')">资金变动</div>
-        <div class="top-btn" @click="go2Path('/financial/drawalu')">USDT结算</div>
-        <div class="top-btn" @click="go2Path('/orders/all')">代收</div>
-        <div class="top-btn" @click="go2Path('/payout/drawalu')">代付</div>
+        <div class="top-btn" @click="go2Path('/financial/billList')">{{tr('资金变动')}}</div>
+        <div class="top-btn" @click="go2Path('/financial/drawalu')">{{tr('USDT结算')}}</div>
+        <div class="top-btn" @click="go2Path('/orders/all')">{{tr('代收')}}</div>
+        <div class="top-btn" @click="go2Path('/payout/drawalu')">{{tr('代付')}}</div>
       </div>
 
       <!-- 余额模块（高度150px） -->
       <div class="balance-area">
         <div class="total-balance">
-          <span class="label">总余额:</span>
+          <span class="label">{{tr('总余额')}}:</span>
           <span class="value">₹{{ baseInfo?.accountBaseInfoVo.totalBalance || '0.00' }}</span>
         </div>
         <div class="balance-items">
           <div class="balance-item">
-            <div class="item-name">可用资金</div>
+            <div class="item-name">{{tr('可用资金')}}</div>
             <div class="item-value">{{ baseInfo?.accountBaseInfoVo.available || '0.00' }} <i class="info-icon">ⓘ</i></div>
           </div>
           <div class="balance-item">
-            <div class="item-name">代收争议资金</div>
+            <div class="item-name">{{tr('代收争议资金')}}</div>
             <div class="item-value">{{ baseInfo?.accountBaseInfoVo.frozenPayinDisputed || '0.00' }} <i class="info-icon">ⓘ</i></div>
           </div>
           <div class="balance-item">
-            <div class="item-name">代收待结算</div>
+            <div class="item-name">{{tr('代收待结算')}}</div>
             <div class="item-value">{{ baseInfo?.accountBaseInfoVo.frozenPayin || '0.00' }} <i class="info-icon">ⓘ</i></div>
           </div>
           <div class="balance-item">
-            <div class="item-name">代付处理中</div>
+            <div class="item-name">{{tr('代付处理中')}}</div>
             <div class="item-value">{{ baseInfo?.accountBaseInfoVo.frozenPayout || '0.00' }} <i class="info-icon">ⓘ</i></div>
           </div>
           <div class="balance-item">
-            <div class="item-name">冻结资金</div>
+            <div class="item-name">{{tr('冻结资金')}}</div>
             <div class="item-value">{{ baseInfo?.accountBaseInfoVo.holdBal || '0.00' }} <i class="info-icon">ⓘ</i></div>
           </div>
         </div>
@@ -44,29 +44,29 @@
     <!-- 订单统计卡片（第二层，高度150px） -->
     <div class="order-cards">
       <div class="order-card">
-        <div class="card-title">代收订单</div>
+        <div class="card-title">{{tr('代收订单')}}</div>
         <div class="card-amount">₹{{ baseInfo?.payinBaseInfoVo.payinSuccessAmount || '0.00' }} <span class="rate">{{ baseInfo?.payinBaseInfoVo.payinSuccessRate || '0.00' }}%</span></div>
         <div class="card-stats">
-          <div class="stat-item">{{ baseInfo?.payinBaseInfoVo.payinFee || '0' }} <span>代收费用</span></div>
-          <div class="stat-item">{{ baseInfo?.payinBaseInfoVo.successCount || '0' }} <span>成功单数</span></div>
-          <div class="stat-item">{{ baseInfo?.payinBaseInfoVo.failedCount || '0' }} <span>失败单数</span></div>
+          <div class="stat-item">{{ baseInfo?.payinBaseInfoVo.payinFee || '0' }} <span>{{tr('代收费用')}}</span></div>
+          <div class="stat-item">{{ baseInfo?.payinBaseInfoVo.successCount || '0' }} <span>{{tr('成功单数')}}</span></div>
+          <div class="stat-item">{{ baseInfo?.payinBaseInfoVo.failedCount || '0' }} <span>{{tr('失败单数')}}</span></div>
         </div>
       </div>
       <div class="order-card">
-        <div class="card-title">代付订单</div>
+        <div class="card-title">{{tr('代付订单')}}</div>
         <div class="card-amount">₹{{ baseInfo?.payoutBaseInfoVo.payoutSuccessAmount || '0.00' }} <span class="rate">{{ baseInfo?.payoutBaseInfoVo.payoutSuccessRate || '0.00' }}%</span></div>
         <div class="card-stats">
-          <div class="stat-item">{{ baseInfo?.payoutBaseInfoVo.payoutFee || '0' }} <span>代付费用</span></div>
-          <div class="stat-item">{{ baseInfo?.payoutBaseInfoVo.successCount || '0' }} <span>成功单数</span></div>
-          <div class="stat-item">{{ baseInfo?.payoutBaseInfoVo.failedCount || '0' }} <span>失败单数</span></div>
+          <div class="stat-item">{{ baseInfo?.payoutBaseInfoVo.payoutFee || '0' }} <span>{{tr('代付费用')}}</span></div>
+          <div class="stat-item">{{ baseInfo?.payoutBaseInfoVo.successCount || '0' }} <span>{{tr('成功单数')}}</span></div>
+          <div class="stat-item">{{ baseInfo?.payoutBaseInfoVo.failedCount || '0' }} <span>{{tr('失败单数')}}</span></div>
         </div>
       </div>
       <div class="order-card">
-        <div class="card-title">代付处理中</div>
+        <div class="card-title">{{tr('代付处理中')}}</div>
         <div class="card-amount">₹{{ baseInfo?.payoutPendingBaseInfoVo.payoutPendingAmount || '0.00' }}</div>
         <div class="card-stats">
-          <div class="stat-item">{{ baseInfo?.payoutPendingBaseInfoVo.payoutPendingCount || '0' }} <span>处理中单数</span></div>
-          <div class="stat-item">{{ baseInfo?.payoutPendingBaseInfoVo.payoutPendingFee || '0' }} <span>处理中费用</span></div>
+          <div class="stat-item">{{ baseInfo?.payoutPendingBaseInfoVo.payoutPendingCount || '0' }} <span>{{tr('处理中单数')}}</span></div>
+          <div class="stat-item">{{ baseInfo?.payoutPendingBaseInfoVo.payoutPendingFee || '0' }} <span>{{tr('处理中费用')}}</span></div>
         </div>
       </div>
     </div>
@@ -74,11 +74,11 @@
     <!-- 图表区域 -->
     <div class="chart-area">
       <div class="chart-card">
-        <div class="chart-title">支付成功率</div>
+        <div class="chart-title">{{tr('支付成功率')}}</div>
         <div class="chart-container" id="payRateChart"></div>
       </div>
       <div class="chart-card">
-        <div class="chart-title">成功支付量</div>
+        <div class="chart-title">{{tr('成功支付量')}}</div>
         <div class="chart-container" id="payAmountChart"></div>
       </div>
     </div>
@@ -90,7 +90,7 @@ import { ref, onMounted, nextTick } from 'vue'
 import * as echarts from 'echarts'
 import {request} from '@/utils/request'
 import router from '@/router'
-
+import {tr} from "@/utils/common";
 function go2Path(path) {
   router.push(path)
 }
@@ -144,7 +144,7 @@ const renderRateChart = () => {
     },
     series: [
       {
-        name: '代收成功率',
+        name: tr('代收成功率'),
         type: 'line',
         data: payRateData.value.payin,
         smooth: true,
@@ -152,7 +152,7 @@ const renderRateChart = () => {
         areaStyle: { color: 'rgba(135, 196, 250, 0.3)' }
       },
       {
-        name: '代付成功率',
+        name: tr('代付成功率'),
         type: 'line',
         data: payRateData.value.payout,
         smooth: true,
@@ -182,13 +182,13 @@ const renderAmountChart = () => {
     },
     series: [
       {
-        name: '代收金额',
+        name: tr('代收金额'),
         type: 'bar',
         data: payAmountData.value.payin,
         itemStyle: { color: '#87c4fa' }
       },
       {
-        name: '代付金额',
+        name: tr('代付金额'),
         type: 'bar',
         data: payAmountData.value.payout,
         itemStyle: { color: '#71eea4' }
