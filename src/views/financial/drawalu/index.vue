@@ -78,7 +78,7 @@
         <a-button type="primary" icon="search" @click="handleSearch">{{tr('搜索')}}</a-button>
         <a-button type="primary" icon="download" @click="handleExport" :loading="exportLoading">{{tr('导出')}}</a-button>
         <a-button type="primary" icon="refresh" @click="handleReset">{{tr('重置')}}</a-button>
-        <a-button type="primary" icon="plus" @click="openCreateModal">{{tr('新建')}}</a-button>
+        <a-button type="primary" icon="plus" @click="openCreateModal">{{tr('申请')}}</a-button>
       </div>
     </div>
 

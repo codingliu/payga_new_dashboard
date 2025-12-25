@@ -150,27 +150,27 @@
     <div class="stats-area">
       <div class="stats-card blue">
         <div class="stats-value">{{ statsData.totalOrder }}</div>
-        <div class="stats-label">总订单数</div>
+        <div class="stats-label">{{tr('总订单数')}}</div>
       </div>
       <div class="stats-card purple">
         <div class="stats-value">{{ statsData.totalAmount }}</div>
-        <div class="stats-label">总金额</div>
+        <div class="stats-label">{{tr('总金额')}}</div>
       </div>
       <div class="stats-card green">
         <div class="stats-value">{{ statsData.successAmount }}</div>
-        <div class="stats-label">成功金额</div>
+        <div class="stats-label">{{tr('成功金额')}}</div>
       </div>
       <div class="stats-card orange">
         <div class="stats-value">{{ statsData.refundAmount }}</div>
-        <div class="stats-label">退款金额</div>
+        <div class="stats-label">{{tr('退款金额')}}</div>
       </div>
       <div class="stats-card yellow">
         <div class="stats-value">{{ statsData.successFee }}</div>
-        <div class="stats-label">成功费用</div>
+        <div class="stats-label">{{tr('成功费用')}}</div>
       </div>
       <div class="stats-card red">
         <div class="stats-value">{{ statsData.disputeAmount }}</div>
-        <div class="stats-label">争议金额</div>
+        <div class="stats-label">{{tr('争议金额')}}</div>
       </div>
     </div>
 

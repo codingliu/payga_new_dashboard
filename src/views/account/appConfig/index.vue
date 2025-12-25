@@ -73,21 +73,21 @@
         </div>
         <div class="form-container">
           <div class="form-item">
-            <label class="form-label">商户编号</label>
+            <label class="form-label">{{tr('商户编号')}}</label>
             <div class="input-group">
               <input type="text" class="form-input" :value="baseForm.merchantId" readonly>
               <button class="copy-btn" @click="copyText(baseForm.merchantId)">📋</button>
             </div>
           </div>
           <div class="form-item">
-            <label class="form-label">商户名</label>
+            <label class="form-label">{{tr('商户名')}}</label>
             <div class="input-group">
               <input type="text" class="form-input" :value="baseForm.merchantName" readonly>
               <button class="copy-btn" @click="copyText(baseForm.merchantName)">📋</button>
             </div>
           </div>
           <div class="form-item">
-            <label class="form-label">商户md5key</label>
+            <label class="form-label">{{tr('商户')}}md5key</label>
             <div class="input-group">
               <textarea class="form-textarea" readonly>{{ baseForm.md5key }}</textarea>
               <button class="copy-btn copy-textarea-btn" @click="copyText(baseForm.md5key)">📋</button>
@@ -173,7 +173,7 @@
                        type="text"
                        class="form-input"
                        v-model="googleForm.authCode"
-                       placeholder="{{tr('请输入谷歌验证APP中的授权码')}}"
+                       :placeholder="tr('请输入谷歌验证APP中的授权码')"
                 >
               </div>
               <div class="error-text" v-if="googleFormError.authCode">{{tr('请输入授权码')}}</div>

@@ -7,18 +7,6 @@
       <a-form-item :label="tr('邮箱')" label-col-flex="200px">
         <a-input v-model="baseInfo.b" allow-clear />
       </a-form-item>
-      <a-form-item :label="tr('登录谷歌验证')" label-col-flex="200px">
-        <a-switch v-model="baseInfo.c" @change="changeShowQr" />
-      </a-form-item>
-      <a-form-item v-if="baseInfo.c" :label="tr('二维码')" label-col-flex="200px">
-        <div class="qr-code-box">
-          <div class="ar-code__header">{{tr('手机打开 Google Authenticator(谷歌身份验证器) ，扫描二维码')}}</div>
-          <img :src="qrCode" alt="" class="ar-code__img" />
-        </div>
-      </a-form-item>
-      <a-form-item :label="tr('谷歌验证码')" label-col-flex="200px">
-        <a-input v-model="baseInfo.google" allow-clear />
-      </a-form-item>
       <a-form-item label-col-flex="200px">
         <a-button type="primary" style="margin-right: 20px">{{tr('重置')}}</a-button>
         <a-button html-type="submit" type="primary">{{tr('保存')}}</a-button>

@@ -3,8 +3,8 @@
     <!-- 顶部标题栏（广告位）- 圆角、大图标 -->
     <div class="page-header">
       <div class="header-text">
-        <h2 class="page-title">支付方式</h2>
-        <p class="page-subtitle">支付信息 · 支付方式</p>
+        <h2 class="page-title">{{tr('支付方式')}}</h2>
+        <p class="page-subtitle">{{tr('支付信息')}} · {{tr('支付方式')}}</p>
       </div>
       <div class="header-icon">
         <div class="icon-box">
@@ -21,21 +21,21 @@
           :class="{ active: activeTab === 'PAYIN' }"
           @click="handleTabChange('PAYIN')"
       >
-        代收
+        {{tr('代收')}}
       </div>
       <div
           class="tab-item"
           :class="{ active: activeTab === 'PAYOUT' }"
           @click="handleTabChange('PAYOUT')"
       >
-        代付
+        {{tr('代付')}}
       </div>
       <div
           class="tab-item"
           :class="{ active: activeTab === 'WITHDRAW' }"
           @click="handleTabChange('WITHDRAW')"
       >
-        提现
+        {{tr('提现')}}
       </div>
     </div>
 
@@ -66,7 +66,7 @@
 import {ref, reactive, watch, nextTick} from 'vue'
 import {Table, Message} from '@arco-design/web-vue'
 import {request} from '@/utils/request'
-
+import {tr} from "@/utils/common";
 // 当前激活的tab - 默认代收
 const activeTab = ref('PAYIN')
 // 表格加载状态
@@ -78,29 +78,29 @@ const tableColumns = reactive([])
 // 列配置映射表
 const columnsMap = {
   PAYIN: [
-    {title: '支付方式编码', dataIndex: 'methodName', width: 120},
-    {title: '币种', dataIndex: 'currency', width: 80},
-    {title: '收费方式', dataIndex: 'feeRate', slotName: 'feeRate', width: 180, align: 'left'},
-    {title: '支付单笔最小额度', dataIndex: 'lowAmount', width: 140},
-    {title: '支付单笔最大额度', dataIndex: 'topAmount', width: 140},
-    {title: '状态', dataIndex: 'status', slotName: 'state', width: 100},
-    {title: '结算周期', dataIndex: 'settleMethod', width: 100}
+    {title: tr('支付方式编码'), dataIndex: 'methodName', width: 120},
+    {title: tr('币种'), dataIndex: 'currency', width: 80},
+    {title: tr('收费方式'), dataIndex: 'feeRate', slotName: 'feeRate', width: 180, align: 'left'},
+    {title: tr('支付单笔最小额度'), dataIndex: 'lowAmount', width: 140},
+    {title: tr('支付单笔最大额度'), dataIndex: 'topAmount', width: 140},
+    {title: tr('状态'), dataIndex: 'status', slotName: 'state', width: 100},
+    {title: tr('结算周期'), dataIndex: 'settleMethod', width: 100}
   ],
   PAYOUT: [
-    {title: '支付方式编码', dataIndex: 'methodName', width: 120},
-    {title: '币种', dataIndex: 'currency', width: 80},
-    {title: '收费方式', dataIndex: 'feeRate', slotName: 'feeRate',width: 180},
-    {title: '支付单笔最小额度', dataIndex: 'lowAmount', width: 140},
-    {title: '支付单笔最大额度', dataIndex: 'topAmount', width: 140},
-    {title: '状态', dataIndex: 'status', slotName: 'state',width: 100}
+    {title: tr('支付方式编码'), dataIndex: 'methodName', width: 120},
+    {title: tr('币种'), dataIndex: 'currency', width: 80},
+    {title: tr('收费方式'), dataIndex: 'feeRate', slotName: 'feeRate',width: 180},
+    {title: tr('支付单笔最小额度'), dataIndex: 'lowAmount', width: 140},
+    {title: tr('支付单笔最大额度'), dataIndex: 'topAmount', width: 140},
+    {title: tr('状态'), dataIndex: 'status', slotName: 'state',width: 100}
   ],
   WITHDRAW: [
-    {title: '支付方式编码', dataIndex: 'methodName', width: 120},
-    {title: '币种', dataIndex: 'currency', width: 80},
-    {title: '收费方式', dataIndex: 'feeRate', slotName: 'feeRate',width: 180},
-    {title: '支付单笔最小额度', dataIndex: 'lowAmount', width: 140},
-    {title: '支付单笔最大额度', dataIndex: 'topAmount', width: 140},
-    {title: '状态', dataIndex: 'status',slotName: 'state', width: 100}
+    {title: tr('支付方式编码'), dataIndex: 'methodName', width: 120},
+    {title: tr('币种'), dataIndex: 'currency', width: 80},
+    {title: tr('收费方式'), dataIndex: 'feeRate', slotName: 'feeRate',width: 180},
+    {title: tr('支付单笔最小额度'), dataIndex: 'lowAmount', width: 140},
+    {title: tr('支付单笔最大额度'), dataIndex: 'topAmount', width: 140},
+    {title: tr('状态'), dataIndex: 'status',slotName: 'state', width: 100}
   ]
 }
 const getStateClass = (state) => {
@@ -126,13 +126,12 @@ const getMethodList = async (transType) => {
       await nextTick() // 等待DOM更新，避免数据覆盖
       // 直接存入数组，表格自动遍历
       tableData.push(...res.data)
-      console.log('表格数据：', tableData) // 确认数据已存入
     } else {
-      Message.error(res.message || '获取数据失败（非数组格式）')
+      Message.error(res.message)
     }
   } catch (err) {
     console.error(err)
-    Message.error('网络异常，请重试')
+    Message.error('failed, pls try again')
   } finally {
     loading.value = false
   }

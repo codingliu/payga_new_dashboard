@@ -43,26 +43,26 @@ function createService () {
       if (error.response) {
         switch (error.response.status) {
           case 404:
-            err('服务器资源不存在')
+            err('Not Found')
             break
           case 500:
-            err('服务器内部错误')
+            err('Server Error')
             break
           case 401:
             throttle(() => {
-              err('登录状态已过期，需要重新登录')
+              err('Login Expired，Pls try again')
               tool.local.clear()
               router.push({name: 'login'})
             })()
             break
           case 403:
-            err('没有权限访问该资源')
+            err('No permission to access this resource')
             break
           default:
-            err('未知错误！')
+            err('Error')
         }
       } else {
-        err('请求超时，服务器无响应！')
+        err('Timeout，Serve No Response！')
       }
       return Promise.reject(error.response && error.response.data ? error.response.data : null)
     }

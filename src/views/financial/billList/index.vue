@@ -5,7 +5,7 @@
       <div class="header-content">
         <div class="title-group">
           <h1 class="main-title">{{tr('账务变动')}}</h1>
-          <div class="breadcrumbs">{{tr('财务 ')}}· {{tr('账务变动')}}</div>
+          <div class="breadcrumbs">{{tr('财务')}} · {{tr('账务变动')}}</div>
         </div>
         <div class="decor-icon">
           <div class="icon-wrapper">
@@ -23,7 +23,7 @@
           <label class="search-label">{{tr('平台订单号')}}</label>
           <a-input
               v-model="searchForm.platNo"
-              placeholder="请输入平台订单号"
+              :placeholder="tr('请输入平台订单号')"
               class="search-input"
           />
         </div>
