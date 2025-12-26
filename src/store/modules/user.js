@@ -83,11 +83,11 @@ const useUserStore = defineStore('user', {
                                     "mode": "light",
                                     "tag": false,
                                     "menuCollapse": false,
-                                    "menuWidth": 220,
+                                    "menuWidth": 265,
                                     "layout": "classic",
                                     "skin": "mine",
                                     "i18n": false,
-                                    "language": "zh_TW",
+                                    "language": "en",
                                     "animation": "ma-slide-down",
                                     "color": "#165DFF"
                                 },

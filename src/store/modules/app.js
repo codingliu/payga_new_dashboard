@@ -2,14 +2,14 @@ let defaultSetting = {
   mode: 'light',
   tag: false,
   menuCollapse: false,
-  menuWidth: 230,
+  menuWidth: 265,
   layout: 'classic',
   skin: 'mine',
   i18n: true,
-  language: 'zh_TW',
+  language: 'en',
   animation: 'ma-slide-down',
   color: '#165dff',
-  settingOpen: false,
+  settingOpen: true,
   searchOpen: false,
   registerWangEditorButtonFlag: false
 }

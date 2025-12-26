@@ -139,9 +139,9 @@ const handleLanguage = (val) => appStore.changeLanguage(val)
 
           <a-form-item :hide-label="true">
             <a-select v-model="formlocale.language" @change="handleLanguage">
+              <a-option value="en">{{ $t('sys.english') }}</a-option>
               <a-option value="zh_CN">{{ $t('sys.chinese') }}</a-option>
               <a-option value="zh_TW">{{ $t('sys.chinese_tw') }}</a-option>
-              <a-option value="en">{{ $t('sys.english') }}</a-option>
             </a-select>
           </a-form-item>
 
