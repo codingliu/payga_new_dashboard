@@ -264,9 +264,9 @@ const columns = reactive([
   { title: tr('商户订单号'), dataIndex: 'merchantOrderNo', className: 'custom-number-class' },
   { title: tr('平台订单号'), dataIndex: 'platNo' },
   { title: tr('支付方式'), dataIndex: 'paymentMethod' },
-  { title: tr('收款人姓名'), dataIndex: 'payeeInfo' },
+  { title: tr('收款人账号'), dataIndex: 'payeeInfo' },
   { title: tr('收款人手机号'), dataIndex: 'payerPhone' },
-  { title: tr('收款人邮箱'), dataIndex: 'payeeEmail' },
+  { title: tr('IFSC'), dataIndex: 'payeeBankCode' },
   { title: tr('支付金额'), dataIndex: 'actualAmount' },
   { title: tr('金额'), dataIndex: 'amount' },
   { title: tr('费用'), dataIndex: 'fee' },
@@ -383,7 +383,7 @@ const handleExport = async () => {
 
     const env = import.meta.env
     // 3. 拼接URL和参数
-    const exportUrl = 'http://localhost:2888/api/trade/payout/list/export';
+    const exportUrl = 'https://dashboard.paygaindia.com/trade/payout/list/export';
     const paramsStr = qs.stringify(validParams);
     const fullUrl = paramsStr ? `${exportUrl}?${paramsStr}` : exportUrl;
     // 4. 创建XMLHttpRequest对象，手动携带Token
