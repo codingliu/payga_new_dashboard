@@ -242,5 +242,11 @@ export default {
     '请输入付款人手机号':'Please enter the payer\'s mobile number',
     '请输入付款人邮箱':'Please enter the payer\'s email',
     '请选择清算状态':'Please select the settlement status',
-    '选择时间范围':'Select Time Range'
+    '选择时间范围':'Select Time Range',
+    '代收成功率':'Collection Success Rate',
+    '代付成功率':'Payment Success Rate',
+    '代收金额':'Collection Amount',
+    '代付金额':'Payment Amount',
+    '收款人账号':'Payee Account Number',
+    'IFSC':'IFSC'
 }

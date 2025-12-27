@@ -37,42 +37,6 @@
       </div>
       <div class="search-row">
         <div class="search-item">
-          <label class="search-label">{{tr('银行流水号')}}</label>
-          <a-input
-              v-model="searchForm.trxId"
-              :placeholder="tr('请输入银行流水号')"
-              class="search-input"
-          />
-        </div>
-        <div class="search-item">
-          <label class="search-label">{{tr('金额')}}</label>
-          <div class="amount-group">
-            <a-input
-                v-model="searchForm.minAmount"
-                placeholder="最小金额"
-                class="search-input amount-input"
-                type="number"
-            />
-            <span class="amount-separator">-</span>
-            <a-input
-                v-model="searchForm.maxAmount"
-                placeholder="最大金额"
-                class="search-input amount-input"
-                type="number"
-            />
-          </div>
-        </div>
-        <div class="search-item">
-          <label class="search-label">{{tr('付款人姓名')}}</label>
-          <a-input
-              v-model="searchForm.payerInfo"
-              :placeholder="tr('请输入付款人姓名')"
-              class="search-input"
-          />
-        </div>
-      </div>
-      <div class="search-row">
-        <div class="search-item">
           <label class="search-label">{{tr('付款人手机号')}}</label>
           <a-input
               v-model="searchForm.payerMobile"
@@ -89,19 +53,23 @@
           />
         </div>
         <div class="search-item">
-          <label class="search-label">{{tr('清算状态')}}</label>
-          <a-select
-              v-model="searchForm.settlementStatus"
-              :placeholder="tr('请选择清算状态')"
+          <label class="search-label">{{tr('付款人姓名')}}</label>
+          <a-input
+              v-model="searchForm.payerInfo"
+              :placeholder="tr('请输入付款人姓名')"
               class="search-input"
-          >
-            <a-option value="">{{tr('全部')}}</a-option>
-            <a-option value="SETTLED">{{tr('已清算')}}</a-option>
-            <a-option value="UNSETTLED">{{tr('未清算')}}</a-option>
-          </a-select>
+          />
         </div>
       </div>
       <div class="search-row">
+        <div class="search-item">
+          <label class="search-label">{{tr('银行流水号')}}</label>
+          <a-input
+              v-model="searchForm.trxId"
+              :placeholder="tr('请输入银行流水号')"
+              class="search-input"
+          />
+        </div>
         <div class="search-item">
           <label class="search-label">{{tr('创建时间')}}</label>
           <a-range-picker
@@ -110,7 +78,7 @@
               class="search-input"
               show-time
               format="YYYY-MM-DD HH:mm:ss"
-          value-format="YYYY-MM-DD HH:mm:ss"
+              value-format="YYYY-MM-DD HH:mm:ss"
           />
         </div>
         <div class="search-item">
@@ -124,17 +92,36 @@
               value-format="YYYY-MM-DD HH:mm:ss"
           />
         </div>
-        <div class="search-item">
-          <label class="search-label">{{tr('币种')}}</label>
+        <!--div class="search-item">
+          <label class="search-label">{{tr('金额')}}</label>
+          <div class="amount-group">
+            <a-input
+                v-model="searchForm.minAmount"
+                placeholder="最小金额"
+                class="search-input amount-input"
+                type="number"
+            />
+            <span class="amount-separator">-</span>
+            <a-input
+                v-model="searchForm.maxAmount"
+                placeholder="最大金额"
+                class="search-input amount-input"
+                type="number"
+            />
+          </div>
+        </div-->
+        <!--div class="search-item">
+          <label class="search-label">{{tr('清算状态')}}</label>
           <a-select
-              v-model="searchForm.currency"
-              placeholder="请选择币种"
+              v-model="searchForm.settlementStatus"
+              :placeholder="tr('请选择清算状态')"
               class="search-input"
           >
             <a-option value="">{{tr('全部')}}</a-option>
-            <a-option value="INR">INR</a-option>
+            <a-option value="SETTLED">{{tr('已清算')}}</a-option>
+            <a-option value="UNSETTLED">{{tr('未清算')}}</a-option>
           </a-select>
-        </div>
+        </div-->
       </div>
     </div>
 

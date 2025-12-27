@@ -99,14 +99,13 @@
 
       <!-- 固定分页样式（共X项 + 页码数字） -->
       <div class="fixed-pagination">
-        <span class="total-text">{{tr('共')}} {{ paginationConfig.total }} {{tr('项')}}</span>
         <a-pagination
             v-model:current="paginationConfig.current"
             :total="paginationConfig.total"
             :page-size="paginationConfig.pageSize"
-            :show-total="false"
-            :show-size-changer="false"
-            :show-quick-jumper="false"
+            :show-total="true"
+            :show-size-changer="true"
+            :show-quick-jumper="true"
             @change="handlePaginationChange"
             class="number-pagination"
         />
