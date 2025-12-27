@@ -221,7 +221,13 @@ import { request } from "@/utils/request";
 import qs from 'qs';
 import {tr} from "@/utils/common";
 import tool from "@/utils/tool";
+import dayjs from "dayjs";
 
+const getDefaultDate = () => {
+  const threeDaysAgo = dayjs().subtract(3, 'day').format('YYYY-MM-DD 00:00:00');
+  const today = dayjs().format('YYYY-MM-DD 00:00:00');
+  return [threeDaysAgo, today];
+};
 // 统计数据
 const statsData = reactive({
   totalOrder: '0 '+tr('单'),
@@ -243,7 +249,7 @@ const searchForm = reactive({
   payerMobile: '',
   payerEmail: '',
   settlementStatus: '',
-  createTimeRange: [],
+  createTimeRange: getDefaultDate(),
   updateTimeRange: [],
   currency: ''
 })

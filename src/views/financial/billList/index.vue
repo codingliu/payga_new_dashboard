@@ -98,11 +98,18 @@ import {
 import { request } from "@/utils/request";
 import qs from 'qs';
 import {tr} from "@/utils/common";
+import dayjs from "dayjs";
+
+const getDefaultDate = () => {
+  const threeDaysAgo = dayjs().subtract(3, 'day').format('YYYY-MM-DD 00:00:00');
+  const today = dayjs().format('YYYY-MM-DD 00:00:00');
+  return [threeDaysAgo, today];
+};
 // 搜索表单
 const searchForm = reactive({
   platNo: '',
   type: '',
-  createTime: []
+  createTime: getDefaultDate()
 })
 
 // 表格加载状态
