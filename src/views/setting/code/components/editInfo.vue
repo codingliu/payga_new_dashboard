@@ -11,13 +11,13 @@
   <a-modal v-model:visible="visible" :on-before-ok="save" fullscreen unmount-on-close>
     <template #title>编辑生成信息 - {{ record?.table_comment }}</template>
 
-    <a-spin :loading="loading" tip="加载数据中..." class="w-full">
+    <a-spin :loading="loading" tip="Loading..." class="w-full">
       <a-form :model="form" ref="formRef">
         <a-tabs v-model:active-key="activeTab">
           <a-tab-pane title="配置信息" key="base_config">
 
               <a-divider orientation="left">基础信息</a-divider>
-              
+
               <a-row :gutter="24">
                 <a-col :xs="24" :md="12" :xl="12">
                   <a-form-item label="表名称" field="table_name" label-col-flex="auto" :label-col-style="{ width: '100px' }">
@@ -723,7 +723,7 @@ const init = () => {
   // 模块列表
   commonApi.getModuleList().then( res => modules.value = res.data )
   // 请求菜单列表
-  menuApi.tree({ onlyMenu: true }).then( res => { 
+  menuApi.tree({ onlyMenu: true }).then( res => {
     menus.value = res.data
     menus.value.unshift({ id: 0, value: 0, label: '顶级菜单' })
   })

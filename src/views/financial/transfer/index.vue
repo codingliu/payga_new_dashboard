@@ -4,11 +4,11 @@
     <section class="transfer-main__header">
       <div class="header-item">
         <span class="header-item__label">{{tr('可用余额')}}:</span>
-        <span class="header-item__value">{{ tool.groupSeparator(parseFloat(state.balance.a || '0').toFixed(2)) }}</span>
+        <span class="header-item__value">{{ tool.groupSeparator(parseFloat(state.balance.a || 0).toFixed(2)) }}</span>
       </div>
       <div class="header-item">
         <span class="header-item__label">{{tr('待结算余额')}}:</span>
-        <span class="header-item__value">{{ tool.groupSeparator(parseFloat(state.balance.f || '0').toFixed(2))}}</span>
+        <span class="header-item__value">{{ tool.groupSeparator(parseFloat(state.balance.f || 0).toFixed(2))}}</span>
       </div>
     </section>
     <a-divider></a-divider>
@@ -55,14 +55,6 @@ const state = reactive({
 
 const formRef = ref()
 
-async function getOptionBank() {
-  const res = await request({
-    url: '/v1/finance/bank-list'
-  })
-  if(res.code === '200') {
-    state.bankOption = res.data;
-  }
-}
 async function getBalance() {
   const res = await request({
     url: '/v1/index/balance',
@@ -74,7 +66,6 @@ async function getBalance() {
 }
 
 onBeforeMount(() => {
-  getOptionBank()
   getBalance()
 })
 

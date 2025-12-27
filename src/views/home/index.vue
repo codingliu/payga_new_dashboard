@@ -309,12 +309,12 @@ onMounted(async () => {
 .order-card .card-title {
   color: #666;
   margin-bottom: 8px;
-  font-size: 1.125rem; /* 代收/代付订单等字体大小 */
+  font-size: 1.225rem; /* 代收/代付订单等字体大小 */
   font-weight: 600; /* 加粗样式 */
 }
 .order-card .card-amount {
   color: #333;
-  font-size: 1.125rem; /* 订单总金额字体大小 */
+  font-size: 1.425rem; /* 订单总金额字体大小 */
   font-weight: 600; /* 加粗样式 */
 }
 .order-card .rate {
@@ -350,7 +350,7 @@ onMounted(async () => {
 .chart-card {
   flex: 1;
   background-color: #fff;
-  padding: 5px;
+  padding: 30px;
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }

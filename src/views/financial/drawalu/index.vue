@@ -74,11 +74,13 @@
         </div>
       </div>
 
-      <div class="button-group">
-        <a-button type="primary" icon="search" @click="handleSearch">{{tr('搜索')}}</a-button>
-        <a-button type="primary" icon="download" @click="handleExport" :loading="exportLoading">{{tr('导出')}}</a-button>
-        <a-button type="primary" icon="refresh" @click="handleReset">{{tr('重置')}}</a-button>
-        <a-button type="primary" icon="plus" @click="openCreateModal">{{tr('申请')}}</a-button>
+      <div class="space-y-8">
+        <div class="button-group">
+          <a-button type="primary" icon="search" @click="handleSearch">{{tr('搜索')}}</a-button>
+          <a-button type="primary" icon="download" @click="handleExport" :loading="exportLoading">{{tr('导出')}}</a-button>
+          <a-button type="primary" icon="refresh" @click="handleReset">{{tr('重置')}}</a-button>
+          <a-button type="primary" icon="plus" @click="openCreateModal">{{tr('申请')}}</a-button>
+        </div>
       </div>
     </div>
 
@@ -115,7 +117,7 @@
     <!-- 新建弹窗 -->
     <a-modal
         v-model:visible="createModalVisible"
-        title="{{tr('Usdt结算')}}"
+        title="tr('Usdt结算')"
         :footer="null"
         @cancel="createModalVisible = false"
     >
@@ -136,14 +138,14 @@
                 :options="addressTypeOptions"
                 style="width: 100px; margin-right: 8px;"
             />
-            <a-input v-model="createForm.address" placeholder="{{tr('请输入收款地址')}}" />
+            <a-input v-model="createForm.address" :placeholder="tr('请输入收款地址')" />
           </div>
         </div>
 
         <div class="form-item">
           <label class="form-label">{{tr('结算金额')}}({{tr('最小')}}:100000 INR)</label>
           <div class="rate-group">
-            <a-input v-model="createForm.amount" placeholder="{{tr('请输入结算金额')}}" @input="calcUsdt" />
+            <a-input v-model="createForm.amount" :placeholder="tr('请输入结算金额')" @input="calcUsdt" />
             <span class="rate-text">{{tr('汇率')}}: 1 USDT = {{ exchangeRate }} INR</span>
             <span class="usdt-convert">{{ `INR = ${createForm.usdtAmount} USDT` }}</span>
           </div>
@@ -151,7 +153,7 @@
 
         <div class="form-item">
           <label class="form-label">{{tr('备注')}}</label>
-          <a-input v-model="createForm.remark" placeholder="{{tr('受益人将收到在此填写的内容')}}" />
+          <a-input v-model="createForm.remark" :placeholder="tr('请输入备注')" />
         </div>
         <div class="form-item">
           <label class="form-label">Google Auth</label>
@@ -259,7 +261,7 @@ const addressTypeOptions = [
   { label: 'TRC-20', value: 'trc20' }
 ]
 const createForm = reactive({
-  balance: '0',
+  balance: 0,
   addressType: 'trc20',
   address: '',
   amount: '',

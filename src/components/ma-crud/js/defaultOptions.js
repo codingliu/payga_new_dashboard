@@ -68,7 +68,7 @@ export default {
   // 搜索重置按钮文案
   searchResetButtonText: tr('重置'),
   // 搜索栏加载提示文案
-  searchLoadingText: tr('加载数据中...'),
+  searchLoadingText: 'Loading...',
 
   // 搜索提交前置方法
   beforeSearch: (requestParams) => {},
@@ -122,7 +122,7 @@ export default {
     // 选项卡单击事件
     onClick: (value) => {},
   },
-  
+
   // 表单配置项
   formOption: {
     // 显示方式支持模态框和抽屉: modal drawer tag
@@ -165,7 +165,7 @@ export default {
     show: false,
     // 数据来源：table(表格行数据) | api(通过接口获取数据)
     dataSource: 'table',
-    // 数据源API接口 
+    // 数据源API接口
     dataSourceApi: undefined,
     // 是否禁用，仅表格行内按钮有效
     disabled: false,

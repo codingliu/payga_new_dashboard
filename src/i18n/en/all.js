@@ -248,5 +248,18 @@ export default {
     '代收金额':'Collection Amount',
     '代付金额':'Payment Amount',
     '收款人账号':'Payee Account Number',
-    'IFSC':'IFSC'
+    'IFSC':'IFSC',
+    '最小':'Minimum',
+    '总扣款':'Total Deduction',
+    '收到数量':'Received Quantity',
+    '提交':'Submit',
+    '取消':'Cancel',
+    '已创建':'Created',
+    '已支付':'Paid',
+    '支付中':'Paying',
+    '请选择支付状态':'Please select payment status',
+    '成功':'SUCCESS',
+    '请输入收款地址':'Please enter the receiving address',
+    '请输入结算金额':'Please enter the settlement amount',
+    '请输入备注':'Please enter remarks'
 }
