@@ -189,6 +189,8 @@ import {tr} from "@/utils/common";
 import tool from "@/utils/tool";
 import qs from "qs";
 
+// 导出加载状态
+const exportLoading = ref(false)
 const getDefaultDate = () => {
   const threeDaysAgo = dayjs().subtract(3, 'day').format('YYYY-MM-DD 00:00:00');
   const today = dayjs().format('YYYY-MM-DD 00:00:00');
@@ -345,7 +347,7 @@ const handleExport = async () => {
 
     const env = import.meta.env
     // 3. 拼接URL和参数
-    const exportUrl = 'https://dashboard.paygaindia.com/trade/payout/list/export';
+    const exportUrl = 'https://dashboard.paygaindia.com/api/trade/payout/list/export';
     const paramsStr = qs.stringify(validParams);
     const fullUrl = paramsStr ? `${exportUrl}?${paramsStr}` : exportUrl;
     // 4. 创建XMLHttpRequest对象，手动携带Token

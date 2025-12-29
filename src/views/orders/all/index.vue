@@ -379,7 +379,7 @@ const handleExport = async () => {
 
     const env = import.meta.env
     // 3. 拼接URL和参数
-    const exportUrl = 'https://dashboard.paygaindia.com/trade/payin/list/export';
+    const exportUrl = 'https://dashboard.paygaindia.com/api/trade/payin/list/export';
     const paramsStr = qs.stringify(validParams);
     const fullUrl = paramsStr ? `${exportUrl}?${paramsStr}` : exportUrl;
     // 4. 创建XMLHttpRequest对象，手动携带Token

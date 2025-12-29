@@ -234,7 +234,7 @@ const handleExport = () => {
       }
     });
 
-    const exportUrl = 'https://dashboard.paygaindia.com/finance/balList/export';
+    const exportUrl = 'https://dashboard.paygaindia.com/api/finance/balList/export';
     const paramsStr = qs.stringify(validParams);
     const fullUrl = paramsStr ? `${exportUrl}?${paramsStr}` : exportUrl;
 
