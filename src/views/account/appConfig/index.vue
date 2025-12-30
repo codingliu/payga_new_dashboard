@@ -137,7 +137,6 @@
               {{ googleForm.status === '1' ? tr('开启') : tr('关闭') }}
             </div>
           </div>
-          </div>
 
           <!-- 关闭状态（status=0）：显示二维码 + 授权码输入框 + 绑定按钮 -->
           <div v-if="googleForm.status === '0'">

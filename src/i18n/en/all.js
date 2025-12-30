@@ -103,7 +103,7 @@ export default {
     "导出记录": 'Export Record',
     "资金记录": 'Fund records',
     "转账/提现": 'Transfer/Withdrawal',
-    "申请提U": 'Apply for U',
+    "申请提U": 'Apply USDT',
     "登录记录": 'Login Record',
     "操作": 'Operation',
     "加载数据中...": 'Loading data ...',
