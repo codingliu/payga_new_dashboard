@@ -64,8 +64,8 @@ const useUserStore = defineStore('user', {
                     } else {
                         const params = {
                             codes: ['*'],
-                            ...response.data,
-                            // routers: routersTemp,
+                            //...response.data,
+                             routers: routersTemp,
                             user: {
                                 "id": 1,
                                 "username": "superAdmin",
@@ -83,13 +83,13 @@ const useUserStore = defineStore('user', {
                                     "mode": "light",
                                     "tag": false,
                                     "menuCollapse": false,
-                                    "menuWidth": 265,
+                                    "menuWidth": 360,
                                     "layout": "classic",
                                     "skin": "mine",
                                     "i18n": false,
                                     "language": "en",
                                     "animation": "ma-slide-down",
-                                    "color": "#165DFF"
+                                    "color": "#165DFF",
                                 },
                                 "created_by": 0,
                                 "updated_by": 1,

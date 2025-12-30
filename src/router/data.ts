@@ -1,96 +1,184 @@
 export const routersTemp = [
     {
         "redirect": null,
-        "path": "/merchant",
+        "path": "/orders",
         "component": "",
-        "children": [
+        "children": [{
+            "redirect": null,
+            "path": "/orders/all",
+            "component": "orders/all/index",
+            "parent_id": 3000,
+            "meta": {
+                "hidden": false,
+                "icon": "ma-icon-user",
+                "hiddenBreadcrumb": false,
+                "type": "M",
+                "title": "代收订单"
+            },
+            "name": "orders:all",
+            "id": 3100
+        },
             {
                 "redirect": null,
-                "path": "/merchant/list",
-                "component": "merchant/list/index",
-                "parent_id": 7000,
+                "path": "/payout/all",
+                "component": "payout/all/index",
+                "parent_id": 3000,
                 "meta": {
                     "hidden": false,
                     "icon": "ma-icon-user",
                     "hiddenBreadcrumb": false,
                     "type": "M",
-                    "title": "商户列表"
+                    "title": "代付订单"
                 },
-                "name": "merchant:list",
-                "id": 7100
-            },
-            {
-                "redirect": null,
-                "path": "/merchant/transaction",
-                "component": "merchant/transaction/index",
-                "parent_id": 7000,
-                "meta": {
-                    "hidden": false,
-                    "icon": "ma-icon-user",
-                    "hiddenBreadcrumb": false,
-                    "type": "M",
-                    "title": "商户交易"
-                },
-                "name": "merchant:transaction",
-                "id": 7200
-            },
+                "name": "payout:all",
+                "id": 3200
+            }
         ],
         "parent_id": 0,
         "meta": {
             "hidden": false,
-            "icon": "ma-icon-user",
+            "icon": "ma-icon-permission",
             "hiddenBreadcrumb": false,
             "type": "M",
-            "title": "商户管理"
+            "title": "订单列表"
         },
-        "name": "merchant",
-        "id": 7000
+        "name": "orders",
+        "id": 3000
+    },{
+        "redirect": null,
+        "path": "/account",
+        "component": "",
+        "children": [{
+            "redirect": null,
+            "path": "/account/bassicinfo",
+            "component": "account/bassicinfo/index",
+            "parent_id": 1000,
+            "meta": {
+                "hidden": false,
+                "icon": "ma-icon-user",
+                "hiddenBreadcrumb": false,
+                "type": "M",
+                "title": "基本信息"
+            },
+            "name": "account:bassicinfo",
+            "id": 1100
+        },
+            {
+                "redirect": null,
+                "path": "/appConfig",
+                "component": "account/appConfig/index",
+                "parent_id": 1000,
+                "meta": {
+                    "hidden": false,
+                    "icon": "ma-icon-role",
+                    "hiddenBreadcrumb": false,
+                    "type": "M",
+                    "title": "应用配置"
+                },
+                "name": "account:appConfig",
+                "id": 1400
+            }
+        ],
+        "parent_id": 0,
+        "meta": {
+            "hidden": false,
+            "icon": "ma-icon-permission",
+            "hiddenBreadcrumb": false,
+            "type": "M",
+            "title": "账户管理"
+        },
+        "name": "account",
+        "id": 1000
     },
     {
         "redirect": null,
-        "path": "/transaction",
+        "path": "/financial",
         "component": "",
-        "children": [
+        "children": [{
+            "redirect": null,
+            "path": "/financial/billList",
+            "component": "financial/billList/index",
+            "parent_id": 2000,
+            "meta": {
+                "hidden": false,
+                "icon": "ma-icon-user",
+                "hiddenBreadcrumb": false,
+                "type": "M",
+                "title": "资金记录"
+            },
+            "name": "financial:billList",
+            "id": 2100
+        },
             {
                 "redirect": null,
-                "path": "/transaction/payout",
-                "component": "transaction/payout/index",
-                "parent_id": 8000,
+                "path": "/financial/transfer",
+                "component": "financial/transfer/index",
+                "parent_id": 2000,
                 "meta": {
                     "hidden": false,
-                    "icon": "ma-icon-user",
+                    "icon": "ma-icon-role",
                     "hiddenBreadcrumb": false,
                     "type": "M",
-                    "title": "代付列表"
+                    "title": "转账/提现"
                 },
-                "name": "transaction:payout",
-                "id": 8100
+                "name": "financial:transfer",
+                "id": 2200
             },
             {
                 "redirect": null,
-                "path": "/transaction/payin",
-                "component": "transaction/payin/index",
-                "parent_id": 8000,
+                "path": "/financial/drawalu",
+                "component": "financial/drawalu/index",
+                "parent_id": 2000,
                 "meta": {
                     "hidden": false,
-                    "icon": "ma-icon-user",
+                    "icon": "ma-icon-dept",
                     "hiddenBreadcrumb": false,
                     "type": "M",
-                    "title": "代收列表"
+                    "title": "申请提U"
                 },
-                "name": "transaction:payin",
-                "id": 8200
-            },
+                "name": "financial:drawalu",
+                "id": 2300
+            }
         ],
         "parent_id": 0,
         "meta": {
             "hidden": false,
-            "icon": "ma-icon-user",
+            "icon": "ma-icon-permission",
             "hiddenBreadcrumb": false,
             "type": "M",
-            "title": "交易管理"
+            "title": "财务管理"
         },
-        "name": "transaction",
-        "id": 8000
+        "name": "financial",
+        "id": 2000
+    },
+    {
+        "redirect": null,
+        "path": "/paymentMethod",
+        "component": "",
+        "children": [{
+            "redirect": null,
+            "path": "/paymentMethod/all",
+            "component": "paymentMethod/all/index",
+            "parent_id": 5000,
+            "meta": {
+                "hidden": false,
+                "icon": "ma-icon-user",
+                "hiddenBreadcrumb": false,
+                "type": "M",
+                "title": "支付方法"
+            },
+            "name": "withdrawal:all",
+            "id": 5100
+        }],
+        "parent_id": 0,
+        "meta": {
+            "hidden": false,
+            "icon": "ma-icon-permission",
+            "hiddenBreadcrumb": false,
+            "type": "M",
+            "title": "支付信息"
+        },
+        "name": "paymentMethod",
+        "id": 5000
     }
 ]
