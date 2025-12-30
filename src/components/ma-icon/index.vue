@@ -60,7 +60,7 @@
     modelValue: { type: String },
     preview: { type: Boolean, default: true },
   })
-  
+
   const emit = defineEmits(['update:modelValue'])
 
   onMounted( () => currentIcon.value = props.modelValue )
@@ -83,7 +83,7 @@
     visible.value = false
   }
 
-  const handlerChange = (value) => { 
+  const handlerChange = (value) => {
     selectIcon(value, '')
   }
 </script>
@@ -110,7 +110,7 @@
     border: 2px solid var(--color-fill-4); margin-bottom: 10px;
     margin-right: 6px; padding: 5px; cursor: pointer;
   }
-  
+
   li:hover, li.active {
     border: 2px solid rgb(var(--primary-6));
   }

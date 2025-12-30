@@ -14,7 +14,7 @@
   >
     <div class="flex justify-center logo">
       <img :src="`${$url}logo.png`" class="bg-white" />
-      <span class="ml-2 text-xl mt-2.5" v-if="! appStore.menuCollapse">{{ $title }}</span>
+      <span class="ml-2 text-xl mt-2.5" v-if="! appStore.menuCollapse" style="line-height: 2.2rem;">{{ $title }}</span>
     </div>
     <ma-menu
       ref="MaMenuRef"
@@ -42,5 +42,5 @@
 </script>
 
 <style>
-.logo { height: 51px; border-bottom: 1px solid var(--color-border-1); }
+.logo { height: 61px; border-bottom: 1px solid var(--color-border-1); }
 </style>

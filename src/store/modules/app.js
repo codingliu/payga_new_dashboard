@@ -2,7 +2,7 @@ let defaultSetting = {
   mode: 'light',
   tag: false,
   menuCollapse: false,
-  menuWidth: 265,
+  menuWidth: 300,
   layout: 'classic',
   skin: 'mine',
   i18n: true,

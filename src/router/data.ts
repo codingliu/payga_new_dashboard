@@ -37,7 +37,7 @@ export const routersTemp = [
         "parent_id": 0,
         "meta": {
             "hidden": false,
-            "icon": "ma-icon-permission",
+            "icon": "ma-icon-group",
             "hiddenBreadcrumb": false,
             "type": "M",
             "title": "订单列表"
@@ -82,7 +82,7 @@ export const routersTemp = [
         "parent_id": 0,
         "meta": {
             "hidden": false,
-            "icon": "ma-icon-permission",
+            "icon": "ma-icon-workflow",
             "hiddenBreadcrumb": false,
             "type": "M",
             "title": "账户管理"
@@ -143,7 +143,7 @@ export const routersTemp = [
         "parent_id": 0,
         "meta": {
             "hidden": false,
-            "icon": "ma-icon-permission",
+            "icon": "ma-icon-db",
             "hiddenBreadcrumb": false,
             "type": "M",
             "title": "财务管理"
@@ -162,14 +162,229 @@ export const routersTemp = [
             "parent_id": 5000,
             "meta": {
                 "hidden": false,
-                "icon": "ma-icon-user",
+                "icon": "ma-icon-tool",
                 "hiddenBreadcrumb": false,
                 "type": "M",
                 "title": "支付方法"
             },
             "name": "withdrawal:all",
             "id": 5100
-        }],
+        },
+
+            {
+                "redirect": null,
+                "path": "/paymentMethod/all",
+                "component": "paymentMethod/all/index",
+                "parent_id": 5000,
+                "meta": {
+                    "hidden": false,
+                    "icon": "ma-icon-attach",
+                    "hiddenBreadcrumb": false,
+                    "type": "M",
+                    "title": "支付方法"
+                },
+                "name": "withdrawal:all",
+                "id": 5100
+            },{
+                "redirect": null,
+                "path": "/paymentMethod/all",
+                "component": "paymentMethod/all/index",
+                "parent_id": 5000,
+                "meta": {
+                    "hidden": false,
+                    "icon": "ma-icon-code",
+                    "hiddenBreadcrumb": false,
+                    "type": "M",
+                    "title": "支付方法"
+                },
+                "name": "withdrawal:all",
+                "id": 5100
+            },{
+                "redirect": null,
+                "path": "/paymentMethod/all",
+                "component": "paymentMethod/all/index",
+                "parent_id": 5000,
+                "meta": {
+                    "hidden": false,
+                    "icon": "ma-icon-db",
+                    "hiddenBreadcrumb": false,
+                    "type": "M",
+                    "title": "支付方法"
+                },
+                "name": "withdrawal:all",
+                "id": 5100
+            },{
+                "redirect": null,
+                "path": "/paymentMethod/all",
+                "component": "paymentMethod/all/index",
+                "parent_id": 5000,
+                "meta": {
+                    "hidden": false,
+                    "icon": "ma-icon-dept",
+                    "hiddenBreadcrumb": false,
+                    "type": "M",
+                    "title": "支付方法"
+                },
+                "name": "withdrawal:all",
+                "id": 5100
+            },{
+                "redirect": null,
+                "path": "/paymentMethod/all",
+                "component": "paymentMethod/all/index",
+                "parent_id": 5000,
+                "meta": {
+                    "hidden": false,
+                    "icon": "ma-icon-dict",
+                    "hiddenBreadcrumb": false,
+                    "type": "M",
+                    "title": "支付方法"
+                },
+                "name": "withdrawal:all",
+                "id": 5100
+            },{
+                "redirect": null,
+                "path": "/paymentMethod/all",
+                "component": "paymentMethod/all/index",
+                "parent_id": 5000,
+                "meta": {
+                    "hidden": false,
+                    "icon": "ma-icon-group",
+                    "hiddenBreadcrumb": false,
+                    "type": "M",
+                    "title": "支付方法"
+                },
+                "name": "withdrawal:all",
+                "id": 5100
+            },{
+                "redirect": null,
+                "path": "/paymentMethod/all",
+                "component": "paymentMethod/all/index",
+                "parent_id": 5000,
+                "meta": {
+                    "hidden": false,
+                    "icon": "ma-icon-menu",
+                    "hiddenBreadcrumb": false,
+                    "type": "M",
+                    "title": "支付方法"
+                },
+                "name": "withdrawal:all",
+                "id": 5100
+            },{
+                "redirect": null,
+                "path": "/paymentMethod/all",
+                "component": "paymentMethod/all/index",
+                "parent_id": 5000,
+                "meta": {
+                    "hidden": false,
+                    "icon": "ma-icon-mineadmin",
+                    "hiddenBreadcrumb": false,
+                    "type": "M",
+                    "title": "支付方法"
+                },
+                "name": "withdrawal:all",
+                "id": 5100
+            },{
+                "redirect": null,
+                "path": "/paymentMethod/all",
+                "component": "paymentMethod/all/index",
+                "parent_id": 5000,
+                "meta": {
+                    "hidden": false,
+                    "icon": "ma-icon-online",
+                    "hiddenBreadcrumb": false,
+                    "type": "M",
+                    "title": "支付方法"
+                },
+                "name": "withdrawal:all",
+                "id": 5100
+            },{
+                "redirect": null,
+                "path": "/paymentMethod/all",
+                "component": "paymentMethod/all/index",
+                "parent_id": 5000,
+                "meta": {
+                    "hidden": false,
+                    "icon": "ma-icon-permission",
+                    "hiddenBreadcrumb": false,
+                    "type": "M",
+                    "title": "支付方法"
+                },
+                "name": "withdrawal:all",
+                "id": 5100
+            },{
+                "redirect": null,
+                "path": "/paymentMethod/all",
+                "component": "paymentMethod/all/index",
+                "parent_id": 5000,
+                "meta": {
+                    "hidden": false,
+                    "icon": "ma-icon-post",
+                    "hiddenBreadcrumb": false,
+                    "type": "M",
+                    "title": "支付方法"
+                },
+                "name": "withdrawal:all",
+                "id": 5100
+            },{
+                "redirect": null,
+                "path": "/paymentMethod/all",
+                "component": "paymentMethod/all/index",
+                "parent_id": 5000,
+                "meta": {
+                    "hidden": false,
+                    "icon": "ma-icon-rely",
+                    "hiddenBreadcrumb": false,
+                    "type": "M",
+                    "title": "支付方法"
+                },
+                "name": "withdrawal:all",
+                "id": 5100
+            },{
+                "redirect": null,
+                "path": "/paymentMethod/all",
+                "component": "paymentMethod/all/index",
+                "parent_id": 5000,
+                "meta": {
+                    "hidden": false,
+                    "icon": "ma-icon-role",
+                    "hiddenBreadcrumb": false,
+                    "type": "M",
+                    "title": "支付方法"
+                },
+                "name": "withdrawal:all",
+                "id": 5100
+            },{
+                "redirect": null,
+                "path": "/paymentMethod/all",
+                "component": "paymentMethod/all/index",
+                "parent_id": 5000,
+                "meta": {
+                    "hidden": false,
+                    "icon": "ma-icon-tool",
+                    "hiddenBreadcrumb": false,
+                    "type": "M",
+                    "title": "支付方法"
+                },
+                "name": "withdrawal:all",
+                "id": 5100
+            },{
+                "redirect": null,
+                "path": "/paymentMethod/all",
+                "component": "paymentMethod/all/index",
+                "parent_id": 5000,
+                "meta": {
+                    "hidden": false,
+                    "icon": "ma-icon-workflow",
+                    "hiddenBreadcrumb": false,
+                    "type": "M",
+                    "title": "支付方法"
+                },
+                "name": "withdrawal:all",
+                "id": 5100
+            }
+
+
+        ],
         "parent_id": 0,
         "meta": {
             "hidden": false,
