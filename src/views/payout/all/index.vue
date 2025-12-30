@@ -26,12 +26,11 @@
           <a-select
               v-model="searchForm.paymentStatus"
               :placeholder="tr('请选择支付状态')"
-              class="search-input"
-          >
+              class="search-input">
             <a-option value="">{{tr('全部')}}</a-option>
             <a-option value="SUCCESS">{{tr('成功')}}</a-option>
             <a-option value="FAILED">{{tr('失败')}}</a-option>
-            <a-option value="PAYING">{{tr('支付中')}}</a-option>
+            <a-option value="PENDING">{{tr('支付中')}}</a-option>
           </a-select>
         </div>
       </div>
@@ -174,13 +173,6 @@
 <script setup>
 import { reactive, ref, onMounted, nextTick } from 'vue' // 导入nextTick
 import {
-  Input,
-  Select,
-  Option,
-  RangePicker,
-  Button,
-  Table,
-  Pagination,
   Message
 } from '@arco-design/web-vue'
 import { request } from "@/utils/request";

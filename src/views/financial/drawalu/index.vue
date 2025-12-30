@@ -40,8 +40,12 @@
           <a-select
               v-model="searchForm.status"
               :placeholder="tr('支付状态')"
-              class="search-input"
-          />
+              class="search-input">
+            <a-option value="">{{tr('全部')}}</a-option>
+            <a-option value="CREATED">CREATED</a-option>
+            <a-option value="PENDING">PENDING</a-option>
+            <a-option value="SUCCESS">SUCCESS</a-option>
+          </a-select>
         </div>
       </div>
 
@@ -212,7 +216,6 @@ const paginationConfig = reactive({
   total: 0
 })
 const exchangeRate = ref(0);
-const balance = ref(0);
 
 const getExchangeRate = async () => {
   try {
@@ -295,6 +298,7 @@ const getUsdtData = async () => {
     const [startTime, endTime] = params.createTime || [];
     if (startTime) params.startTime = startTime;
     if (endTime) params.endTime = endTime;
+    delete params.createTime;
 
     // 2. 过滤无效参数：只移除 空字符串、空数组、null/undefined，有效参数保留
     Object.keys(params).forEach(key => {

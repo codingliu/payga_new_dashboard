@@ -26,12 +26,11 @@
           <a-select
               v-model="searchForm.paymentStatus"
               :placeholder="tr('请选择支付状态')"
-              class="search-input"
-          >
+              class="search-input">
             <a-option value="">{{tr('全部')}}</a-option>
             <a-option value="CREATED">{{tr('已创建')}}</a-option>
-            <a-option value="PAID">{{tr('已支付')}}</a-option>
-            <a-option value="PAYING">{{tr('支付中')}}</a-option>
+            <a-option value="CLEARED">{{tr('已支付')}}</a-option>
+            <a-option value="PENDING">{{tr('支付中')}}</a-option>
           </a-select>
         </div>
       </div>

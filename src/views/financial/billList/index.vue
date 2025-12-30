@@ -36,6 +36,8 @@
           <a-option value="">{{tr('全部')}}</a-option>
           <a-option value="PAYIN">PAYIN</a-option>
           <a-option value="PAYOUT">PAYOUT</a-option>
+          <a-option value="WITHDRAW">WITHDRAW</a-option>
+          <a-option value="RECHARGE">RECHARGE</a-option>
           </a-select>
         </div>
         <div class="search-item">
@@ -385,7 +387,7 @@ onMounted(() => {
 
 .search-row {
   display: flex;
-  gap: 20px;
+  gap: 5px;
   margin-bottom: 16px;
   align-items: center;
   flex-wrap: wrap;

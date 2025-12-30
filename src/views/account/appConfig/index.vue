@@ -137,18 +137,6 @@
               {{ googleForm.status === '1' ? tr('开启') : tr('关闭') }}
             </div>
           </div>
-
-          <!-- 开启状态（status=1）：仅显示谷歌验证密钥（无保存按钮） -->
-          <div class="form-item" v-if="googleForm.status === '1'">
-            <label class="form-label">{{tr('谷歌验证密钥')}}</label>
-            <div class="input-group" style="width: 20%">
-              <input
-                  type="text"
-                  class="form-input"
-                  :value="googleForm.secretKey || tr('NULL')"
-                  readonly
-              >
-            </div>
           </div>
 
           <!-- 关闭状态（status=0）：显示二维码 + 授权码输入框 + 绑定按钮 -->
