@@ -253,6 +253,7 @@ export default {
     '总扣款':'Total Deduction',
     '收到数量':'Received Quantity',
     '提交':'Submit',
+    '失败':'FAILED',
     '取消':'Cancel',
     '已创建':'Created',
     '已支付':'Paid',
