@@ -80,7 +80,7 @@
               value-format="YYYY-MM-DD HH:mm:ss"
           />
         </div>
-        <div class="search-item">
+        <!--<div class="search-item">
           <label class="search-label">{{tr('更新时间')}}</label>
           <a-range-picker
               v-model="searchForm.updateTimeRange"
@@ -90,7 +90,7 @@
               format="YYYY-MM-DD HH:mm:ss"
               value-format="YYYY-MM-DD HH:mm:ss"
           />
-        </div>
+        </div> -->
       </div>
     </div>
 
