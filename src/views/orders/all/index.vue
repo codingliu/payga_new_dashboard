@@ -83,7 +83,7 @@
         <div class="search-item">
           <label class="search-label">{{tr('更新时间')}}</label>
           <a-range-picker
-              v-model="searchForm.createTimeRange"
+              v-model="searchForm.updateTimeRange"
               :placeholder="tr('选择时间范围')"
               class="search-input"
               show-time
@@ -463,7 +463,6 @@ const handleCallback = async (record) => {
   }
 }
 
-
 // 独立分页组件事件：页码/每页条数变化时触发
 const handlePaginationChange = () => {
   // 直接调用getPayList，使用paginationConfig的最新值
@@ -476,6 +475,7 @@ const handleSearch = () => {
   paginationConfig.current = 1;
   // 携带搜索条件请求数据
   getPayList(paginationConfig.current, paginationConfig.pageSize, searchForm);
+  getStatsData(searchForm);
 }
 
 // 重置按钮点击事件
@@ -511,11 +511,30 @@ const getStateClass = (state) => {
 }
 
 // 调用统计数据API
-async function getStatsData() {
+const getStatsData = async (searchParams = {}) => {
   try {
+    const requestParams = {
+      ...searchParams
+    };
+// 2. 拆分创建时间：从createTimeRange提取start/end，转为后端参数名
+    const [createStartTime, createEndTime] = searchParams.createTimeRange || [];
+    // 添加createdStartTime和createdEndTime到请求参数
+    if (createStartTime) {
+      requestParams.createdStartTime = createStartTime;
+    }
+    if (createEndTime) {
+      requestParams.createdEndTime = createEndTime;
+    }
+
+    // 3. 删除原有的createTimeRange（避免传递给后端）
+    delete requestParams.createTimeRange;
+    // 同理：如果更新时间也需要拆分，按相同逻辑处理
+    delete requestParams.updateTimeRange;
+
     const res = await request({
       url: '/trade/payin/statistic',
-      method: 'get'
+      method: 'get',
+      params: requestParams
     })
     const data = res.data;
     statsData.totalOrder = `${data.totalOrder || 0} Order`;
@@ -540,8 +559,8 @@ const paginationConfig = reactive({
 
 
 onMounted(() => {
-  getStatsData();
-  getPayList();
+  getStatsData(searchForm);
+  getPayList(paginationConfig.current, paginationConfig.pageSize, searchForm);
 })
 </script>
 

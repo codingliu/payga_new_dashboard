@@ -171,7 +171,7 @@ export const routersTemp = [
             "id": 5100
         },
 
-            {
+           /* {
                 "redirect": null,
                 "path": "/paymentMethod/all",
                 "component": "paymentMethod/all/index",
@@ -381,7 +381,7 @@ export const routersTemp = [
                 },
                 "name": "withdrawal:all",
                 "id": 5100
-            }
+            }*/
 
 
         ],
