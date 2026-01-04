@@ -250,7 +250,7 @@ const columns = reactive([
   { title: tr('结算金额'), dataIndex: 'appliedAmount', className: 'custom-number' },
   { title: tr('汇率'), dataIndex: 'rate', className: 'custom-number' },
   { title: tr('费用'), dataIndex: 'fee', className: 'custom-number' },
-  { title: tr('Usdt金额'), dataIndex: 'arriveAmount', className: 'custom-number' },
+  //{ title: tr('Usdt金额'), dataIndex: 'arriveAmount', className: 'custom-number' },
   { title: tr('备注'), dataIndex: 'remark' },
   { title: tr('交易流水hash'), dataIndex: 'hash' },
   { title: tr('创建时间'), dataIndex: 'createdTime' },

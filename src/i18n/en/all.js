@@ -263,5 +263,11 @@ export default {
     '成功':'SUCCESS',
     '请输入收款地址':'Please enter the receiving address',
     '请输入结算金额':'Please enter the settlement amount',
-    '请输入备注':'Please enter remarks'
+    '请输入备注':'Please enter remarks',
+    '统计':'Statistics',
+    '每日报表':'Daily Report',
+    '日期':'Date',
+    '交易笔数':'Transaction Count',
+    '代付成功笔数':'Payout Count',
+    '代收成功笔数':'Payin Count',
 }

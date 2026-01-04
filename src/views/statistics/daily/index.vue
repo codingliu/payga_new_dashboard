@@ -59,12 +59,12 @@ const searchForm = reactive({
 })
 // 表格列配置
 const columns = reactive([
-  { title: tr('日期'), dataIndex: 'date' },
-  { title: tr('交易笔数'), dataIndex: 'transactionCount'},
+  { title: tr('日期'), dataIndex: 'txnDate' },
+  { title: tr('交易笔数'), dataIndex: 'txnCount'},
   { title: tr('代付金额'), dataIndex: 'payoutAmount' },
   { title: tr('代收金额'), dataIndex: 'payinAmount' },
-  { title: tr('代付成功笔数'), dataIndex: 'payoutCount' },
-  { title: tr('代收成功笔数'), dataIndex: 'payinCount' },
+  { title: tr('代付成功笔数'), dataIndex: 'payoutSuccCount' },
+  { title: tr('代收成功笔数'), dataIndex: 'payinSuccCount' },
   { title: tr('手续费'), dataIndex: 'fee' },
 ])
 
@@ -111,10 +111,9 @@ const getDailyList = async (searchParams = {}) => {
     })
     // 解析接口返回数据
     if (res.code === '200') {
-      const { item } = res.data;
       // 更新表格数据
       tableData.length = 0;
-      tableData.push(...item);
+      tableData.push(...res.data);
     } else {
       console.error('failed：', res.message);
     }
