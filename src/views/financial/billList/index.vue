@@ -42,7 +42,7 @@
         </div>
         <div class="search-item">
           <label class="search-label">{{tr('创建时间')}}</label>
-          <a-range-picker
+          <a-range-picker style="height:38px; width: 500px;"
               v-model="searchForm.createTime"
               type="datetime"
               format="YYYY-MM-DD HH:mm:ss"

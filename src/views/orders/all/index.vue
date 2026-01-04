@@ -23,7 +23,7 @@
         </div>
         <div class="search-item">
           <label class="search-label">{{tr('支付状态')}}</label>
-          <a-select
+          <a-select style="height:38px;"
               v-model="searchForm.paymentStatus"
               :placeholder="tr('请选择支付状态')"
               class="search-input">
@@ -71,9 +71,8 @@
         </div>
         <div class="search-item">
           <label class="search-label">{{tr('创建时间')}}</label>
-          <a-range-picker
+          <a-range-picker style="height:38px; width: 550px;"
               v-model="searchForm.createTimeRange"
-              :placeholder="tr('选择时间范围')"
               class="search-input"
               show-time
               format="YYYY-MM-DD HH:mm:ss"
@@ -500,6 +499,8 @@ const tableData = reactive([])
 const getStateClass = (state) => {
   switch (state) {
     case 'CLEARED':
+      return 'state-tag paid';
+    case 'SUCCESS':
       return 'state-tag paid';
     case 'CREATED':
       return 'state-tag paying';

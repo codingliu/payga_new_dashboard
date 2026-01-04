@@ -92,7 +92,7 @@ export default {
     "账号": "account number",
     "上次登录IP": "Last login IP",
     "银行": "bank",
-    "首页": 'home',
+    "首页": 'Home',
     "仪表盘": 'Dashboard',
     "账户管理": 'Account',
     "财务管理": 'Finance',

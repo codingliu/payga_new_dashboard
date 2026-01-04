@@ -5,9 +5,8 @@
       <div class="search-row">
         <div class="search-item">
           <label class="search-label">{{tr('创建时间')}}</label>
-          <a-range-picker style="height:40px;"
+          <a-range-picker style="height:38px; width: 550px;"
               v-model="searchForm.createTimeRange"
-              :placeholder="tr('选择时间范围')"
               class="search-input"
               show-date
               format="YYYY-MM-DD"
@@ -50,7 +49,7 @@ import dayjs from "dayjs";
 
 const getDefaultDate = () => {
   const threeDaysAgo = dayjs().subtract(4, 'day').format('YYYY-MM-DD');
-  const today = dayjs().add(1, 'day').format('YYYY-MM-DD');
+  const today = dayjs().add(0, 'day').format('YYYY-MM-DD');
   return [threeDaysAgo, today];
 };
 

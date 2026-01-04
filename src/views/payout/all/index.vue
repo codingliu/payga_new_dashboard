@@ -71,9 +71,8 @@
         </div>
         <div class="search-item">
           <label class="search-label">{{tr('创建时间')}}</label>
-          <a-range-picker
+          <a-range-picker style="height:38px; width: 550px;"
               v-model="searchForm.createTimeRange"
-              :placeholder="tr('选择时间范围')"
               class="search-input"
               show-time
               format="YYYY-MM-DD HH:mm:ss"

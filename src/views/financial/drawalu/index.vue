@@ -68,7 +68,7 @@
         </div>
         <div class="search-item">
           <label class="search-label">{{tr('创建时间')}}</label>
-          <a-range-picker
+          <a-range-picker style="height:35px;"
               v-model="searchForm.createTime"
               type="datetime"
               format="YYYY-MM-DD HH:mm:ss"
@@ -228,7 +228,7 @@ const getExchangeRate = async () => {
     if (res.code === '200') {
       // 假设接口返回的汇率字段为rate，可根据实际接口调整
       exchangeRate.value = res.data.accountBaseInfoVo.usdtRate || 98.5; // 若接口返回失败，使用备用值98.5
-      createForm.balance = res.data.accountBaseInfoVo.available || 0;
+      createForm.balance = res.data.accountBaseInfoVo.available+'' || 0;
       createForm.rate = res.data.accountBaseInfoVo.usdtRate;
     } else {
       Message.warning('FAILED LOADING RATE');
@@ -265,7 +265,7 @@ const addressTypeOptions = [
   { label: 'TRC-20', value: 'trc20' }
 ]
 const createForm = reactive({
-  balance: 0,
+  balance: '0',
   addressType: 'trc20',
   address: '',
   amount: '',
@@ -283,7 +283,7 @@ const exportLoading = ref(false)
 // 计算USDT金额
 const calcUsdt = () => {
   const amount = Number(createForm.amount) || 0;
-  const usdt = (amount / 98.5).toFixed(2);
+  const usdt = (amount / createForm.rate).toFixed(2);
   createForm.usdtAmount = usdt;
   createForm.totalDeduct = amount.toString();
 }
