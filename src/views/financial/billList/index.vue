@@ -104,7 +104,7 @@ import dayjs from "dayjs";
 
 const getDefaultDate = () => {
   const threeDaysAgo = dayjs().subtract(3, 'day').format('YYYY-MM-DD 00:00:00');
-  const today = dayjs().format('YYYY-MM-DD 00:00:00');
+  const today = dayjs().format('YYYY-MM-DD 23:59:59');
   return [threeDaysAgo, today];
 };
 // 搜索表单

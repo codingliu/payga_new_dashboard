@@ -121,7 +121,7 @@
     <!-- 新建弹窗 -->
     <a-modal
         v-model:visible="createModalVisible"
-        title="tr('Usdt结算')"
+        title="Usdt Settlement"
         :footer="null"
         @cancel="createModalVisible = false"
     >
@@ -160,8 +160,8 @@
           <a-input v-model="createForm.remark" :placeholder="tr('请输入备注')" />
         </div>
         <div class="form-item">
-          <label class="form-label">Google Auth</label>
-          <a-input v-model="createForm.googleCode" placeholder="2Fa code" />
+          <label class="form-label">Trx Password</label>
+          <a-input v-model="createForm.password" placeholder="password" type="password"/>
         </div>
 
         <div class="form-item">
@@ -193,7 +193,7 @@ import dayjs from 'dayjs';
 // 搜索表单（默认最近三天）
 const getDefaultDate = () => {
   const threeDaysAgo = dayjs().subtract(3, 'day').format('YYYY-MM-DD 00:00:00');
-  const today = dayjs().format('YYYY-MM-DD 00:00:00');
+  const today = dayjs().format('YYYY-MM-DD 23:59:59');
   return [threeDaysAgo, today];
 };
 const searchForm = reactive({
@@ -229,6 +229,7 @@ const getExchangeRate = async () => {
       // 假设接口返回的汇率字段为rate，可根据实际接口调整
       exchangeRate.value = res.data.accountBaseInfoVo.usdtRate || 98.5; // 若接口返回失败，使用备用值98.5
       createForm.balance = res.data.accountBaseInfoVo.available || 0;
+      createForm.rate = res.data.accountBaseInfoVo.usdtRate;
     } else {
       Message.warning('FAILED LOADING RATE');
       exchangeRate.value = 98.5; // 备用值
@@ -272,6 +273,7 @@ const createForm = reactive({
   remark: '',
   googleCode: '',
   fee: '0',
+  rate: '0',
   totalDeduct: '0'
 })
 
@@ -382,15 +384,15 @@ const handleExport = async () => {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'Usdt结算列表.xlsx';
+    a.download = 'Usdt.xlsx';
     document.body.appendChild(a);
     a.click();
     URL.revokeObjectURL(url);
     document.body.removeChild(a);
-    Message.success('导出成功');
+    Message.success('Export Success');
   } catch (err) {
-    console.error('导出异常:', err);
-    Message.error('导出失败，请重试');
+    console.error('Error:', err);
+    Message.error('Failed,Pls try again');
   } finally {
     exportLoading.value = false;
   }
@@ -427,7 +429,8 @@ const handleSubmit = async () => {
         appliedAmount: createForm.amount,
         usdtAmount: createForm.usdtAmount,
         remark: createForm.remark,
-        password: createForm.googleCode
+        rate: createForm.rate,
+        password: createForm.password
       }
     });
     if (res.code === '200') {

@@ -44,51 +44,6 @@ export const routersTemp = [
         },
         "name": "orders",
         "id": 3000
-    },{
-        "redirect": null,
-        "path": "/account",
-        "component": "",
-        "children": [{
-            "redirect": null,
-            "path": "/account/bassicinfo",
-            "component": "account/bassicinfo/index",
-            "parent_id": 1000,
-            "meta": {
-                "hidden": false,
-                "icon": "ma-icon-user",
-                "hiddenBreadcrumb": false,
-                "type": "M",
-                "title": "基本信息"
-            },
-            "name": "account:bassicinfo",
-            "id": 1100
-        },
-            {
-                "redirect": null,
-                "path": "/appConfig",
-                "component": "account/appConfig/index",
-                "parent_id": 1000,
-                "meta": {
-                    "hidden": false,
-                    "icon": "ma-icon-role",
-                    "hiddenBreadcrumb": false,
-                    "type": "M",
-                    "title": "应用配置"
-                },
-                "name": "account:appConfig",
-                "id": 1400
-            }
-        ],
-        "parent_id": 0,
-        "meta": {
-            "hidden": false,
-            "icon": "ma-icon-workflow",
-            "hiddenBreadcrumb": false,
-            "type": "M",
-            "title": "账户管理"
-        },
-        "name": "account",
-        "id": 1000
     },
     {
         "redirect": null,
@@ -151,6 +106,87 @@ export const routersTemp = [
         "name": "financial",
         "id": 2000
     },
+
+    {
+        "redirect": null,
+        "path": "/statistics",
+        "component": "",
+        "children": [{
+            "redirect": null,
+            "path": "/statistics/daily",
+            "component": "statistics/daily/index",
+            "parent_id": 2000,
+            "meta": {
+                "hidden": false,
+                "icon": "ma-icon-post",
+                "hiddenBreadcrumb": false,
+                "type": "M",
+                "title": "每日报表"
+            },
+            "name": "statistics:daily",
+            "id": 2100
+        }
+        ],
+        "parent_id": 0,
+        "meta": {
+            "hidden": false,
+            "icon": "ma-icon-rely",
+            "hiddenBreadcrumb": false,
+            "type": "M",
+            "title": "统计"
+        },
+        "name": "statistics",
+        "id": 2000
+    },
+
+
+    {
+        "redirect": null,
+        "path": "/account",
+        "component": "",
+        "children": [{
+            "redirect": null,
+            "path": "/account/bassicinfo",
+            "component": "account/bassicinfo/index",
+            "parent_id": 1000,
+            "meta": {
+                "hidden": false,
+                "icon": "ma-icon-user",
+                "hiddenBreadcrumb": false,
+                "type": "M",
+                "title": "基本信息"
+            },
+            "name": "account:bassicinfo",
+            "id": 1100
+        },
+            {
+                "redirect": null,
+                "path": "/appConfig",
+                "component": "account/appConfig/index",
+                "parent_id": 1000,
+                "meta": {
+                    "hidden": false,
+                    "icon": "ma-icon-role",
+                    "hiddenBreadcrumb": false,
+                    "type": "M",
+                    "title": "应用配置"
+                },
+                "name": "account:appConfig",
+                "id": 1400
+            }
+        ],
+        "parent_id": 0,
+        "meta": {
+            "hidden": false,
+            "icon": "ma-icon-workflow",
+            "hiddenBreadcrumb": false,
+            "type": "M",
+            "title": "账户管理"
+        },
+        "name": "account",
+        "id": 1000
+    },
+
     {
         "redirect": null,
         "path": "/paymentMethod",
@@ -171,7 +207,7 @@ export const routersTemp = [
             "id": 5100
         },
 
-           /* {
+            /*{
                 "redirect": null,
                 "path": "/paymentMethod/all",
                 "component": "paymentMethod/all/index",
