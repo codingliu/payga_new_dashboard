@@ -138,26 +138,7 @@
   }
 
   const download = async (record) => {
-    let url = ''
-    let storeMode = getStoreMode(record.storage_mode)
 
-    if (storeMode !== 'LOCAL') {
-      Message.info('处理中...')
-      const domain = upload.storage[storeMode]
-      url = domain + record.url
-    } else {
-      //文件上传在本地则请求后端下载
-      Message.info('请求服务器下载文件中...')
-      url = 'system/downloadById?id=' + record.id
-    }
-
-    const response = await commonApi.download(url, 'get')
-    if (response) {
-      tool.download(response, (storeMode !== 'LOCAL') ? record.origin_name : '')
-      Message.success('请求成功，文件开始下载')  
-    } else {
-      Message.error('文件下载失败')  
-    }
   }
 
   const handlerChange = (val) => {
@@ -176,7 +157,7 @@
   }
 
   const getStoreMode = (mode) => {
-    return uploadConfig.storageMode[mode.toString()]
+    return null
   }
 
   const crud = reactive({
@@ -200,26 +181,26 @@
 
   const columns = reactive([
     // { title: 'ID', dataIndex: 'id', addDisplay: false, editDisplay: false, width: 50 },
-    { 
+    {
       title: '预览', dataIndex: 'url', width: 80,
     },
-    { 
+    {
       title: '存储名称', dataIndex: 'object_name', width: 220,
     },
-    { 
+    {
       title: '原文件名', dataIndex: 'origin_name', width: 150, search: true,
     },
     {
       title: '存储模式', dataIndex: 'storage_mode', width: 100, search: true, formType: 'select',
       dict: { name: 'upload_mode', props: { label: 'title', value: 'key' }, translation: true },
     },
-    { 
+    {
       title: '资源类型', dataIndex: 'mime_type', width: 130,
     },
-    { 
+    {
       title: '存储目录', dataIndex: 'storage_path', width: 130,
     },
-    { 
+    {
       title: '文件大小', dataIndex: 'size_info', width: 130,
     },
     {

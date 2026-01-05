@@ -148,7 +148,7 @@ tool.generateId = function() {
 
 tool.viewImage = function(path, defaultStorage = 'LOCAL') {
   let mode = tool.local.get('site_storage_mode') ? tool.local.get('site_storage_mode').toUpperCase() : defaultStorage
-  return uploadConfig.storage[mode] + path
+  return null
 }
 
 tool.showFile = function(hash, defaultStorage = 'LOCAL') {
@@ -156,7 +156,7 @@ tool.showFile = function(hash, defaultStorage = 'LOCAL') {
     return tool.viewImage(hash, defaultStorage)
   }
   let mode = tool.local.get('site_storage_mode') ? tool.local.get('site_storage_mode').toUpperCase() : defaultStorage
-  return uploadConfig.storage[mode] + '/system/showFile/' + hash
+  return null
 }
 
 /* 日期格式化 */
@@ -315,7 +315,7 @@ tool.getRequestParams = (url) => {
 }
 
 tool.attachUrl = (path, defaultStorage = 'LOCAL') => {
-	return uploadConfig.storage[defaultStorage] + path
+	return null
 }
 
 /**

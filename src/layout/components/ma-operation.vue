@@ -93,12 +93,9 @@
 import {reactive, ref} from 'vue'
   import { useAppStore, useUserStore, useMessageStore } from '@/store'
   import tool from '@/utils/tool'
-  import MessageNotification from './components/message-notification.vue'
   import { useRouter } from 'vue-router'
   import { useI18n } from 'vue-i18n'
   import { Message } from '@arco-design/web-vue'
-  import WsMessage from '@/ws-serve/message'
-  import { info } from '@/utils/common'
   import commonApi from '@/api/common'
 
   const { t } = useI18n()
