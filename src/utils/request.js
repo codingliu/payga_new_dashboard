@@ -107,7 +107,7 @@ function createRequest (service) {
         config.header
       ),
 
-      timeout: 10000,
+      timeout: 20000,
       baseURL: env.VITE_APP_OPEN_PROXY === 'true' ? env.VITE_APP_PROXY_PREFIX : env.VITE_APP_BASE_URL,
       data: {}
     }

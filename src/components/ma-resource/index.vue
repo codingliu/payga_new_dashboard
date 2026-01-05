@@ -25,7 +25,7 @@
       />
     </div>
     <div class="w-full lg:ml-3 mt-3 lg:mt-2 flex flex-col">
-      
+
       <div class="lg:flex lg:justify-between">
         <div class="flex">
           <ma-upload v-model="uploadFile" multiple :show-list="false" type="chunk" :resource="false" />
@@ -90,8 +90,6 @@
 
 <script setup>
   import { ref, onMounted, watch } from 'vue'
-  import MaUpload from '@cps/ma-upload/index.vue'
-  import uploadConfig from '@/config/upload'
   import MaTreeSlider from '@cps/ma-treeSlider/index.vue'
   import commonApi from '@/api/common'
   import tool from '@/utils/tool'
@@ -100,7 +98,6 @@
 
   const { t } = useI18n()
   const sliderData = ref([])
-  const uploadFile = ref()
   const attachmentList = ref([])
   const openNetworkModal = ref(false)
   const networkImg = ref()
@@ -122,7 +119,7 @@
     onlyData: { type: Boolean, default: true },
     returnType: { type: String, default: 'hash'},
   })
-  
+
   onMounted(async () => {
     const treeData = await commonApi.getDict('attachment_type')
     treeData.data.unshift({ title: '所有', key: 'all' })
@@ -135,7 +132,7 @@
   })
 
   const getStoreMode = (mode) => {
-    return uploadConfig.storageMode[mode.toString()]
+    return null
   }
 
   const getAttachmentList = async (params = {}) => {
@@ -255,7 +252,7 @@
   .item {
     width: 130px; height: 130px; border: 2px solid var(--color-fill-1);
     margin-right: 10px; margin-bottom: 20px;
-    background-color: var(--color-fill-1); 
+    background-color: var(--color-fill-1);
     cursor: pointer; position: relative;
     .file-name {
       position: absolute; bottom: 0px; height: 23px;

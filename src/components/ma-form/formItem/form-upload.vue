@@ -42,7 +42,6 @@
 <script setup>
 import { ref, inject, onMounted, watch } from 'vue'
 import { get, set } from 'lodash'
-import MaUpload from '@/components/ma-upload/index.vue'
 import MaFormItem from './form-item.vue'
 import { maEvent } from '../js/formItemMixin.js'
 const props = defineProps({

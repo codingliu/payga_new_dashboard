@@ -80,7 +80,6 @@
   }
 
   const handlerLinkage = (value) => {
-    cancelLinkage.value = value
   }
 
   const handlerClick = (value) => {
@@ -106,7 +105,7 @@
     response.success && Message.success(response.message)
     emit('success')
     done(true)
-  } 
+  }
 
   const close = () => visible.value = false
 

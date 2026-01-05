@@ -22,13 +22,11 @@ export type FormDateType =
   | "input"
   | "password"
   | "textarea"
-  | "upload"
   | "select-user"
   | "editor"
   | "code-editor"
   | "icon"
   | "user-info"
-  | "city-linkage"
   | "form-group"
   | "select-resource";
 /**

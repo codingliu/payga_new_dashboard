@@ -29,9 +29,7 @@ import {onBeforeUnmount, ref, shallowRef, watch, computed} from 'vue'
 import { Boot } from '@wangeditor/editor'
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 import {useAppStore} from "@/store"
-import {uploadRequest} from "@cps/ma-upload/js/utils";
 import tool from "@/utils/tool";
-import uploadConfig from "@/config/upload";
 
 const resourceVisible = ref(false)
 const appStore = useAppStore()
@@ -156,14 +154,6 @@ const editorConfig = {
         'deleteImage',
       ],
     }
-  }
-}
-
-editorConfig.MENU_CONF['uploadImage'] = {
-  async customUpload(file, insertFn) {
-    uploadRequest(file, 'image', 'uploadImage').then((res) => {
-      insertFn(tool.attachUrl(res.url, uploadConfig.storageMode[res.storage_mode]));
-    });
   }
 }
 

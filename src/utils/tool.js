@@ -1,6 +1,5 @@
 import CryptoJS from 'crypto-js'
 import uploadConfig from '@/config/upload'
-import CityLinkageJson from "@/components/ma-cityLinkage/lib/city.json"
 
 const typeColor = (type = 'default') => {
   let color = ''
@@ -132,26 +131,6 @@ tool.screen = (element) => {
     } else if (element.webkitRequestFullscreen) {
       element.webkitRequestFullscreen();
     }
-  }
-}
-
-// 城市代码翻译成名称
-tool.cityToCode = function(province, city = undefined, area = undefined, split = ' / ') {
-  try {
-    let provinceData = CityLinkageJson.filter(item => province == item.code)[0]
-    if (! city) {
-      return provinceData.name
-    }
-    let cityData = provinceData.children.filter(item => city == item.code)[0]
-
-    if (! area) {
-      return [provinceData.name, cityData.name].join(split)
-    }
-    let areaData = cityData.children.filter(item => area == item.code)[0]
-
-    return [provinceData.name, cityData.name, areaData.name].join(split)
-  } catch (e) {
-    return ''
   }
 }
 
@@ -287,7 +266,7 @@ tool.download = (res, downName = '') => {
         fileName = result[0].replace(/filename\*=utf-8\'\'/gi, '')
     }
   }
-  
+
   aLink.href = URL.createObjectURL(blob)
   // 设置下载文件名称
   aLink.setAttribute('download', fileName)

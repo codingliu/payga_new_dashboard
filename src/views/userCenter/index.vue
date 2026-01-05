@@ -11,7 +11,6 @@
   <div class="block">
     <div class="user-header rounded-sm text-center">
       <div class="pt-3 mx-auto avatar-box">
-        <ma-upload v-model="userInfo.avatar" rounded />
       </div>
       <div>
         <a-tag size="large" class="mt-3 rounded-full" color="#165dff">
@@ -65,7 +64,6 @@
 
 <script setup>
   import { ref, reactive, onMounted, watch } from 'vue'
-  import MaUpload from '@cps/ma-upload/index.vue'
   import { useUserStore } from '@/store'
   import { Message } from '@arco-design/web-vue'
   import user from '@/api/system/user'

@@ -12,7 +12,6 @@ import {
 import MaCrud from './ma-crud/index.vue'
 import MaForm from './ma-form/index.vue'
 import MaChart from './ma-charts/index.vue'
-import MaUpload from './ma-upload/index.vue'
 import MaTreeSlider from './ma-treeSlider/index.vue'
 import MaResource from './ma-resource/index.vue'
 import MaResourceButton from './ma-resource/button.vue'
@@ -22,7 +21,6 @@ import MaWangEditor from './ma-wangEditor/index.vue'
 import MaIcon from './ma-icon/index.vue'
 import MaCodeEditor from './ma-codeEditor/index.vue'
 import MaUserInfo from './ma-userInfo/index.vue'
-import MaCityLinkage from './ma-cityLinkage/index.vue'
 
 use([
   CanvasRenderer,
@@ -43,7 +41,6 @@ export default {
     Vue.component('MaChart', MaChart)
     Vue.component('MaCrud', MaCrud)
     Vue.component('MaForm', MaForm)
-    Vue.component('MaUpload', MaUpload)
     Vue.component('MaTreeSlider', MaTreeSlider)
     Vue.component('MaResource', MaResource)
     Vue.component('MaResourceButton', MaResourceButton)
@@ -53,6 +50,5 @@ export default {
     Vue.component('MaIcon', MaIcon)
     Vue.component('MaCodeEditor', MaCodeEditor)
     Vue.component('MaUserInfo', MaUserInfo)
-    Vue.component('MaCityLinkage', MaCityLinkage)
   }
 }
