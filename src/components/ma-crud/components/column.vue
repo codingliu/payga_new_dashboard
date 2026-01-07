@@ -152,7 +152,6 @@
 <script setup>
 import { inject } from 'vue'
 import config from '@/config/crud'
-import uploadConfig from '@/config/upload'
 import { Message } from '@arco-design/web-vue'
 import { isFunction, get, isArray, isObject } from 'lodash'
 import CustomRender from '../js/custom-render'

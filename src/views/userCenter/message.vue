@@ -15,7 +15,7 @@
         :key="item"
         @click="getMessageList(item.key, index)"
       >
-        <Component :is="typeIcon[item.key] ? typeIcon[item.key] : 'icon-message'" /> 
+        <Component :is="typeIcon[item.key] ? typeIcon[item.key] : 'icon-message'" />
         <span class="pl-3">{{ item.title }}</span></li>
     </ul>
     <div class="h-hull w-full lg:ml-3 lg:mr-2 pt-2">
@@ -77,7 +77,6 @@
 <script setup>
   import { nextTick, onMounted, ref } from 'vue'
   import commonApi from '@/api/common'
-  import queueMessage from '@/api/system/queueMessage'
 
   const typeIcon = ref({
     send_box: 'icon-send',
@@ -98,7 +97,7 @@
   const detailLoading = ref(true)
   const receiveListVisible = ref(false)
   const record = ref({})
-  
+
   onMounted(async () => {
     const response = await commonApi.getDict('queue_msg_type')
     msgType.value = response.data
@@ -128,27 +127,15 @@
   }
 
   const loadData = (key) => {
-    crud.value.api = key === 'send_box' ? queueMessage.getSendList : queueMessage.getReceiveList
-    const sendBy = { title: '发送人', dataIndex: 'send_user.nickname', width: 120, addDisplay: false, editDisplay: false  }
-    if (key === 'send_box' && columns.value[0].title === '发送人') {
-      columns.value.splice(0, 1)
-    } else if (key !== 'send_box' && columns.value[0].title !== '发送人') {
-      columns.value.unshift(sendBy)
-    }
-    nextTick(() => crudRef.value.requestData())
+    null
   }
 
   const changeReadStatus = (key) => {
-    crud.value.requestParams.read_status = key
-    crudRef.value.requestData()
+
   }
 
   const showDetail = async(row) => {
-    detailVisible.value = true
-    detailLoading.value = true
-    await queueMessage.updateReadStatus({ ids: row.id })
-    record.value = row
-    detailLoading.value = false
+
   }
 
   const showReceiveList = (id) => {
@@ -158,9 +145,7 @@
   }
 
   const receiveCrud = ref({
-    api: queueMessage.getReceiveUser,
-    requestParams: {},
-    autoRequest: false
+
   })
 
   const receiveColumns = ref([
@@ -174,8 +159,6 @@
     showIndex: false,
     requestParams: { read_status: 'all' },
     rowSelection: { showCheckedAll: true },
-    add: { show: true, text: '发私信', api: queueMessage.sendPrivateMessage },
-    delete: { show: true, api: queueMessage.deletes },
     operationColumn: true,
     operationColumnWidth: 240,
     formOption: { width: 800 },
@@ -199,7 +182,7 @@
       formType: 'select',
       width: 150,
       dict: { name: 'queue_msg_type', translation: true, props: { label: 'title', value: 'key' } },
-      addDisplay: false, editDisplay: false 
+      addDisplay: false, editDisplay: false
     },
     {
       title: '接收用户',
@@ -225,7 +208,7 @@
       search: true,
       formType: 'range',
       addDisplay: false,
-      editDisplay: false 
+      editDisplay: false
     },
   ])
 </script>

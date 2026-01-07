@@ -1,5 +1,4 @@
 import CryptoJS from 'crypto-js'
-import uploadConfig from '@/config/upload'
 
 const typeColor = (type = 'default') => {
   let color = ''

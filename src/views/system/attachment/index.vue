@@ -107,7 +107,6 @@
 
 <script setup>
   import { ref, onMounted, reactive, computed, nextTick } from 'vue'
-  import uploadConfig from '@/config/upload'
   import MaTreeSlider from '@cps/ma-treeSlider/index.vue'
   import attachment from '@/api/system/attachment'
   import commonApi from '@/api/common'
