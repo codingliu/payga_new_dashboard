@@ -30,7 +30,6 @@
 <script setup>
 import { ref, inject, onMounted, watch } from 'vue'
 import { get, set } from 'lodash'
-import MaWangEditor from '@/components/ma-wangEditor/index.vue'
 import MaFormItem from './form-item.vue'
 import { maEvent } from '../js/formItemMixin.js'
 const props = defineProps({

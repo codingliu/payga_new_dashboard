@@ -10,16 +10,12 @@ import {
 } from 'echarts/components'
 
 import MaCrud from './ma-crud/index.vue'
-import MaForm from './ma-form/index.vue'
 import MaChart from './ma-charts/index.vue'
 import MaTreeSlider from './ma-treeSlider/index.vue'
 import MaResource from './ma-resource/index.vue'
 import MaResourceButton from './ma-resource/button.vue'
 import MaUser from './ma-user/index.vue'
-import MaEditor from './ma-editor/index.vue'
-import MaWangEditor from './ma-wangEditor/index.vue'
 import MaIcon from './ma-icon/index.vue'
-import MaCodeEditor from './ma-codeEditor/index.vue'
 import MaUserInfo from './ma-userInfo/index.vue'
 
 use([
@@ -40,15 +36,11 @@ export default {
   install(Vue) {
     Vue.component('MaChart', MaChart)
     Vue.component('MaCrud', MaCrud)
-    Vue.component('MaForm', MaForm)
     Vue.component('MaTreeSlider', MaTreeSlider)
     Vue.component('MaResource', MaResource)
     Vue.component('MaResourceButton', MaResourceButton)
     Vue.component('MaUser', MaUser)
-    Vue.component('MaEditor', MaEditor)
-    Vue.component('MaWangEditor', MaWangEditor)
     Vue.component('MaIcon', MaIcon)
-    Vue.component('MaCodeEditor', MaCodeEditor)
     Vue.component('MaUserInfo', MaUserInfo)
   }
 }

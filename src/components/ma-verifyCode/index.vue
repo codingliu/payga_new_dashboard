@@ -82,7 +82,6 @@ const generateCode = () => {
   }
 
   ctx.restore()
-  ctx.save()
 
   return codeText
 }

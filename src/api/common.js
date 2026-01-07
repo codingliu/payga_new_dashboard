@@ -26,42 +26,6 @@ export default {
   },
 
   /**
-   * 获取部门列表
-   * @returns
-   */
-  getDeptTreeList(params = {}) {
-    return request({
-      url: 'system/common/getDeptTreeList',
-      method: 'get',
-      params
-    })
-  },
-
-  /**
-   * 获取角色列表
-   * @returns
-   */
-  getRoleList(params = {}) {
-    return request({
-      url: 'system/common/getRoleList',
-      method: 'get',
-      params
-    })
-  },
-
-  /**
-   * 获取岗位列表
-   * @returns
-   */
-  getPostList(params = {}) {
-    return request({
-      url: 'system/common/getPostList',
-      method: 'get',
-      params
-    })
-  },
-
-  /**
    * 获取公告列表
    * @returns
    */
@@ -157,7 +121,7 @@ export default {
       params
     })
   },
-  
+
   /**
    * 获取操作日志列表
    */
@@ -181,7 +145,7 @@ export default {
   },
 
   /**
-   * 通用导入Excel 
+   * 通用导入Excel
    */
   importExcel (url, data) {
     return request({ url, method: 'post', data, timeout: 30 * 1000 })
