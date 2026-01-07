@@ -26,31 +26,6 @@ const routes = [
     path: '/login',
     component: () => import('@/views/login.vue'),
     meta: { title: '登录' }
-  }, {
-    name: 'mineDoc',
-    path: '/mineDoc',
-    component: () => import('@/views/mineDoc/index.vue'),
-    meta: { title: '接口文档' },
-    children: [
-      {
-        path: '/interfaceList',
-        name: 'interfaceList',
-        meta: { title: '接口列表' },
-        component: () => import('@/views/mineDoc/page/interfaceList.vue'),
-      },
-      {
-        path: '/interfaceCode',
-        name: 'interfaceCode',
-        meta: { title: '代码释义' },
-        component: () => import('@/views/mineDoc/page/interfaceCode.vue'),
-      },
-      {
-        path: '/signature',
-        name: 'signature',
-        meta: { title: '签名算法' },
-        component: () => import('@/views/mineDoc/page/signature.vue'),
-      }
-    ]
   }
   , {
     path: "/:pathMatch(.*)*",

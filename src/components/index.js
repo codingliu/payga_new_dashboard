@@ -9,14 +9,9 @@ import {
   GraphicComponent,
 } from 'echarts/components'
 
-import MaCrud from './ma-crud/index.vue'
 import MaChart from './ma-charts/index.vue'
-import MaTreeSlider from './ma-treeSlider/index.vue'
-import MaResource from './ma-resource/index.vue'
-import MaResourceButton from './ma-resource/button.vue'
 import MaUser from './ma-user/index.vue'
 import MaIcon from './ma-icon/index.vue'
-import MaUserInfo from './ma-userInfo/index.vue'
 
 use([
   CanvasRenderer,
@@ -35,12 +30,7 @@ use([
 export default {
   install(Vue) {
     Vue.component('MaChart', MaChart)
-    Vue.component('MaCrud', MaCrud)
-    Vue.component('MaTreeSlider', MaTreeSlider)
-    Vue.component('MaResource', MaResource)
-    Vue.component('MaResourceButton', MaResourceButton)
     Vue.component('MaUser', MaUser)
     Vue.component('MaIcon', MaIcon)
-    Vue.component('MaUserInfo', MaUserInfo)
   }
 }

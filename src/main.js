@@ -7,7 +7,6 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import i18n from '@/i18n'
-import directives from './directives'
 
 // 官方样式
 // import '@arco-design/web-vue/dist/arco.css'
@@ -28,7 +27,6 @@ app.use(ArcoVue, {})
 .use(router)
 .use(store)
 .use(i18n)
-.use(directives)
 .use(globalComponents)
 
 // 注册ma-icon图标
