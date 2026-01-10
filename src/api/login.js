@@ -4,17 +4,6 @@ import qs from "qs";
 export default {
 
   /**
-   * 获取验证码
-   * @returns
-   */
-  getCaptch() {
-    return request({
-      url: 'system/captcha',
-      method: 'get'
-    })
-  },
-
-  /**
    * 用户登录
    * @param {object} params
    * @returns
