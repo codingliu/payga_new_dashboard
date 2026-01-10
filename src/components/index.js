@@ -9,7 +9,6 @@ import {
   GraphicComponent,
 } from 'echarts/components'
 
-import MaChart from './ma-charts/index.vue'
 import MaUser from './ma-user/index.vue'
 import MaIcon from './ma-icon/index.vue'
 
@@ -29,7 +28,6 @@ use([
 
 export default {
   install(Vue) {
-    Vue.component('MaChart', MaChart)
     Vue.component('MaUser', MaUser)
     Vue.component('MaIcon', MaIcon)
   }
