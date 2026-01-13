@@ -13,17 +13,20 @@
     </section>
     <a-divider></a-divider>
     <a-form ref="formRef"  @submit="handleSubmit" class="transfer-main__body" :model="form">
-      <a-form-item field="e" :label="tr('提现金额')" :rules="[{required:true, message:'this is required'}]">
-        <a-input v-model="form.e" :placeholder="tr('最小100，单笔手续费+0%')" />
+      <a-form-item field="appliedAmount" :label="tr('提现金额')" :rules="[{required:true, message:'this is required'}]">
+        <a-input v-model="form.appliedAmount" :placeholder="tr('最小100，单笔手续费+0%')" />
       </a-form-item>
-      <a-form-item field="d"  :label="tr('转账账户')" :rules="[{required:true, message:'this is required'}]">
-        <a-input v-model="form.d" :placeholder="tr('请输入转账账户')" />
+      <a-form-item field="receiveAccount"  :label="tr('转账账户')" :rules="[{required:true, message:'this is required'}]">
+        <a-input v-model="form.receiveAccount" :placeholder="tr('请输入转账账户')" />
       </a-form-item>
-      <a-form-item field="b" :label="tr('收款人')" :rules="[{required:true, message:'this is required'}]">
-        <a-input v-model="form.b" :placeholder="tr('请输入收款人真实姓名')" />
+      <a-form-item field="ifsc"  :label="tr('IFSC')" :rules="[{required:true, message:'this is required'}]">
+        <a-input v-model="form.ifsc" :placeholder="tr('IFSC')" />
       </a-form-item>
-      <a-form-item field="c" :label="tr('支付密码')" :rules="[{required:true, message:'this is required'}]">
-        <a-input v-model="form.c" type="password" :placeholder="tr('请输入支付密码')" />
+      <a-form-item field="accountHoldName" :label="tr('收款人')" :rules="[{required:true, message:'this is required'}]">
+        <a-input v-model="form.accountHoldName" :placeholder="tr('请输入收款人真实姓名')" />
+      </a-form-item>
+      <a-form-item field="password" :label="tr('支付密码')" :rules="[{required:true, message:'this is required'}]">
+        <a-input v-model="form.password" type="password" :placeholder="tr('请输入支付密码')" />
       </a-form-item>
       <a-form-item>
         <a-button @click="resetform">{{tr('重置')}}</a-button>
@@ -36,16 +39,15 @@
 import {onBeforeMount, reactive, ref} from "vue";
 import {tr} from "@/utils/common";
 import {request} from "@/utils/request";
-import {Md5} from "ts-md5";
 import {Message} from "@arco-design/web-vue";
 import tool from "@/utils/tool";
 
 const form = reactive({
-  a: '',
-  b: '',
-  c: '',
-  d: '',
-  e: ''
+  appliedAmount: '',
+  receiveAccount: '',
+  accountHoldName: '',
+  ifsc: '',
+  password: ''
 })
 
 const state = reactive({
@@ -73,17 +75,18 @@ function handleSubmit({values, errors}) {
   formRef.value?.validate(res => {
     if(!res) {
       const {c, ...rest} = values
-      const md5 = new Md5()
-      md5.appendAsciiStr(c)
-      const params = {...rest, c: md5.end()}
+      const params = {...rest}
       request({
-        url: '/v1/finance/withdraw',
+        url: '/merchant/settlement/inr/apply',
         method: 'post',
         data: params
       }).then(res => {
-        if(res.code === '200') {
-          Message.success(tr('提现成功'))
-          resetform()
+        if (res.code === '200') {
+          Message.success('Submit Success');
+          createModalVisible.value = false;
+          getUsdtData();
+        } else {
+          Message.error(res.message);
         }
       })
     }

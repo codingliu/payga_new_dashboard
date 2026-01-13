@@ -115,7 +115,7 @@
           <div class="form-item">
             <label class="form-label">API IP</label>
             <div class="input-group">
-              <input type="text" class="form-input" v-model="apiForm.apiIp" placeholder="tr('请输入您的代收款服务器IP地址')">
+              <input type="text" class="form-input" v-model="apiForm.apiIp" placeholder="Pls input your server ip">
             </div>
             <div class="error-text" v-if="apiFormError.payIp">{{tr('请输入有效的IP地址')}}</div>
           </div>
