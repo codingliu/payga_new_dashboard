@@ -9,10 +9,8 @@
 -->
 <script setup>
 import { reactive, ref } from 'vue'
-import verifyCode from '@cps/ma-verifyCode/index.vue'
 import {useAppStore, useUserStore} from '@/store'
 import { useRouter, useRoute } from 'vue-router'
-import { request } from '@/utils/request'
 import { cloneDeep } from "lodash";
 import { Md5 } from 'ts-md5'
 import tool from "@/utils/tool";
