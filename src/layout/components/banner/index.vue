@@ -35,7 +35,6 @@
 
   const route = useRoute()
 
-  const MaMenuRef = ref(null)
   const userStore = useUserStore()
   const appStore = useAppStore()
   const actives = ref([])

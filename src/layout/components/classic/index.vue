@@ -21,7 +21,6 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
 
 import MaClassicSlider from './ma-classic-slider.vue'
 import MaClassicHeader from './ma-classic-header.vue'

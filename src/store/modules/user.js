@@ -72,12 +72,12 @@ const useUserStore = defineStore('user', {
                                 "user_type": "100",
                                 "nickname": "超级管理员",
                                 "phone": "13888888888",
-                                "email": "admin123@adminmine.com",
+                                "email": "admin123@XXXX.com",
                                 "avatar": "https://demo.mineadmin.com/upload/uploadfile/20230330/499990370432749568.jpg",
                                 "signed": "Today is very good！",
                                 "dashboard": "statistics",
                                 "status": 2,
-                                "login_time": "2023-11-05 03:31:46",
+                                "login_time": "2026-01-05 03:31:46",
                                 "backend_setting": {
                                     "mode": "light",
                                     "tag": false,
@@ -92,8 +92,8 @@ const useUserStore = defineStore('user', {
                                 },
                                 "created_by": 0,
                                 "updated_by": 1,
-                                "created_at": "2022-08-01 02:35:14",
-                                "updated_at": "2023-11-05 03:31:46",
+                                "created_at": "2026-01-05 03:31:46",
+                                "updated_at": "2026-01-05 03:31:46",
                                 "remark": null
                             },
                             roles: ['superAdmin']
