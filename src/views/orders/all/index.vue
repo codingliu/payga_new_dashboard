@@ -79,10 +79,10 @@
               value-format="YYYY-MM-DD HH:mm:ss"
           />
         </div>
-        <!--<div class="search-item">
-          <label class="search-label">{{tr('更新时间')}}</label>
+        <div class="search-item">
+          <label class="search-label">{{tr('完成时间')}}</label>
           <a-range-picker
-              v-model="searchForm.updateTimeRange"
+              v-model="searchForm.completeTimeRange"
               :placeholder="tr('选择时间范围')"
               class="search-input"
               show-time
@@ -90,7 +90,7 @@
               value-format="YYYY-MM-DD HH:mm:ss"
           />
         </div>
-        div class="search-item">
+        <!--div class="search-item">
           <label class="search-label">{{tr('金额')}}</label>
           <div class="amount-group">
             <a-input
@@ -248,7 +248,7 @@ const searchForm = reactive({
   payerEmail: '',
   settlementStatus: '',
   createTimeRange: getDefaultDate(),
-  updateTimeRange: [],
+  completeTimeRange: [],
   currency: ''
 })
 // 表格列配置
@@ -266,6 +266,7 @@ const columns = reactive([
   { title: tr('银行流水号'), dataIndex: 'trxId' },
   { title: tr('备注'), dataIndex: 'remark' },
   { title: tr('创建时间'), dataIndex: 'createdTime' },
+  { title: tr('完成时间'), dataIndex: 'completeTime' },
 
 
   // 新增：状态列（固定在右侧）
@@ -302,6 +303,7 @@ const getPayList = async (page = 1, limit = 15, searchParams = {}) => {
 
     // 2. 拆分创建时间：从createTimeRange提取start/end，转为后端参数名
     const [createStartTime, createEndTime] = searchParams.createTimeRange || [];
+    const [completeStartTime, completeEndTime] = searchParams.completeTimeRange || [];
     // 添加createdStartTime和createdEndTime到请求参数
     if (createStartTime) {
       requestParams.createdStartTime = createStartTime;
@@ -309,11 +311,16 @@ const getPayList = async (page = 1, limit = 15, searchParams = {}) => {
     if (createEndTime) {
       requestParams.createdEndTime = createEndTime;
     }
+    if (completeStartTime) {
+      requestParams.completeStartTime = completeStartTime;
+    }
+    if (completeEndTime) {
+      requestParams.completeEndTime = completeEndTime;
+    }
 
     // 3. 删除原有的createTimeRange（避免传递给后端）
     delete requestParams.createTimeRange;
-    // 同理：如果更新时间也需要拆分，按相同逻辑处理
-    delete requestParams.updateTimeRange;
+    delete requestParams.completeTimeRange;
 
     // 2. 过滤无效参数：只移除 空字符串、空数组、null/undefined，有效参数保留
     Object.keys(requestParams).forEach(key => {
