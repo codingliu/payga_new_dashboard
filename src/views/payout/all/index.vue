@@ -406,7 +406,7 @@ const handleCallback = async (record) => {
       }
     });
     // 请求成功，弹出success提示
-    if (res.code === 200) {
+    if (res.code === '200') {
       Message.success('success'); // 核心：弹出成功提示
       // 可选：刷新表格数据，更新回调后的状态
       // getPayList();
